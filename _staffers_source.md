@@ -31,8 +31,6 @@ name: Ian Zane
 role: Teaching Assistant
 ---
 
-**Weekly OH:** During discussion section (Wed, 4-4:50pm & 5-5:50pm @ CSB 004)
-
 
 ## pradyumna
 ---
