@@ -1,0 +1,216 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  COURSE CALENDAR — one entry per week, rendered on the home page.
+#
+#  Edit this file and push; the calendar rebuilds itself. Nothing else to touch.
+#
+#  Each week:
+#    week     the week number shown in the second column
+#    month    only on the first week of a new month; draws the coloured band
+#    topic    the "Module" cell (markdown). Set it on the FIRST week of a
+#             module only; the following weeks leave it out and the cell
+#             stretches down to cover them. Use `topic: ''` for an empty cell
+#             that does NOT join the module above.
+#    mon / wed / fri
+#      date     e.g. "Sept 28"
+#      lec      e.g. "Lec 1"  (omit for exams, holidays, etc.)
+#      title    what the class covers
+#      guest    guest speaker line, shown in blue italics under the title
+#      event    big red text instead of a lecture, e.g. "EXAM 1"
+#      note     small red italic line, e.g. drop deadlines
+#      due      list of assignment names; each becomes a submission link.
+#               The link is looked up in `submit:` in _config.yml by the first
+#               word of the name ("Quiz 1" -> submit.Quiz).
+#      section  what happens in discussion section that day. Just `Section`
+#               shows the label alone.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- week: 0
+  month: Sept
+  fri:
+    date: Sept 25
+    title: Course intro
+
+- week: 1
+  topic: |
+    **Describe:**
+    Common statistical tests as GLMs
+  mon:
+    date: Sept 28
+    lec: Lec 1
+    title: "Everything is a GLM: distribution families, linear predictors, link functions"
+    due: [Pre-course survey, Syllabus quiz]
+  wed:
+    date: Sept 30
+    lec: Lec 2
+    title: "EDA with GLMs: choosing a statistical test via outcome type and distribution"
+    section: Section
+  fri:
+    date: Oct 2
+    lec: Lec 3
+    title: "EDA with GLMs (cont'd): assumptions and violations"
+
+- week: 2
+  month: Oct
+  topic: |
+    **Predict:**
+    Prediction and inference with GLMs
+  mon:
+    date: Oct 5
+    lec: Lec 4
+    title: GLMs for prediction and inference
+    due: [Quiz 1, Homework 1]
+  wed:
+    date: Oct 7
+    lec: Lec 5
+    title: GLM interpretation and model evaluation
+    section: Section
+  fri:
+    date: Oct 9
+    lec: Lec 6
+    title: Mediation and moderation analysis (indirect and interaction effects)
+
+- week: 3
+  mon:
+    date: Oct 12
+    lec: Lec 7
+    title: "Mixed-effects models: fixed vs. random effects"
+    due: [Quiz 2, Homework 2]
+  wed:
+    date: Oct 14
+    lec: Lec 8
+    title: Building and interpreting mixed-effects models
+    section: Section
+  fri:
+    date: Oct 16
+    lec: Lec 9
+    title: Survival analysis
+
+- week: 4
+  mon:
+    date: Oct 19
+    lec: Lec 10
+    title: "Guest lecture: Aubrey Lau"
+    guest: Senior UX Researcher, Zillow
+    due: [Quiz 3, Homework 3]
+  wed:
+    date: Oct 21
+    event: EXAM 1
+    section: Section
+  fri:
+    date: Oct 23
+    lec: Lec 11
+    title: Generative vs. discriminative models; normative models of cognition
+    note: Last day to drop without a "W"
+
+- week: 5
+  topic: |
+    **Explain:**
+    Generative models of cognition and behavior
+  mon:
+    date: Oct 26
+    lec: Lec 12
+    title: Reinforcement learning as a cognitive model of decision making
+    due: [Project 1 (slides & video)]
+  wed:
+    date: Oct 28
+    lec: Lec 13
+    title: Model simulation & behavioral predictions
+    section: Section
+  fri:
+    date: Oct 30
+    lec: Lec 14
+    title: Maximum-likelihood model fitting & parameter recovery
+
+- week: 6
+  month: Nov
+  mon:
+    date: Nov 2
+    lec: Lec 15
+    title: Model comparison & posterior predictive checks
+    due: [Quiz 4, Homework 4]
+  wed:
+    date: Nov 4
+    lec: Lec 16
+    title: Latent variables and individual differences
+    section: Section
+  fri:
+    date: Nov 6
+    lec: Lec 17
+    title: "Guest lecture: Ionatan Kuperwajs"
+    guest: Postdoctoral Fellow, Princeton CoCoSci Lab
+    note: Last day to drop with a "W"
+
+- week: 7
+  mon:
+    date: Nov 9
+    event: EXAM 2
+    due: [Quiz 5, Homework 5]
+  wed:
+    date: Nov 11
+    event: NO CLASS / SECTION
+    note: Veterans Day holiday
+  fri:
+    date: Nov 13
+    event: NO CLASS
+    note: Prof. Lai giving talks in NYC
+
+- week: 8
+  mon:
+    date: Nov 16
+    lec: Lec 18
+    title: Bayesian inference as a model of perception and beliefs
+    due: [Project 2 (slides & video)]
+  wed:
+    date: Nov 18
+    lec: Lec 19
+    title: Bayesian models (cont'd)
+    section: Section
+  fri:
+    date: Nov 20
+    lec: Lec 20
+    title: Bayesian models (cont'd)
+
+- week: 9
+  mon:
+    date: Nov 23
+    lec: Lec 21
+    title: Hidden Markov Models (HMMs) as a model of unobserved cognitive states
+    due: [Quiz 6, Homework 6]
+  wed:
+    date: Nov 25
+    lec: Lec 22
+    title: HMMs (cont'd)
+    section: Section
+  fri:
+    date: Nov 27
+    event: NO CLASS
+    note: Thanksgiving holiday
+
+- week: 10
+  month: Dec
+  topic: |
+    **Exam 3**
+  mon:
+    date: Nov 30
+    lec: Lec 23
+    title: HMMs (cont'd) — _virtual lecture_
+    due: [Quiz 7, Homework 7]
+  wed:
+    date: Dec 2
+    event: EXAM 3
+    section: "Office hours ONLY, for project help/feedback. No attendance credit."
+  fri:
+    date: Dec 4
+    event: COURSE PROJECT EXPO
+    title: "& course conclusion"
+
+- week: 11
+  topic: ''
+  mon:
+    date: Dec 7
+  wed:
+    date: Dec 9
+  fri:
+    date: Dec 11
+    event: NO FINAL EXAM
+    due: [Final Project (slides & video)]

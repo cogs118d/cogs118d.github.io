@@ -1,0 +1,22 @@
+{%- comment -%}
+  Renders the entries in _data/notices.yml as just-the-docs callouts.
+  See that file for the fields. Outputs nothing when there are no notices.
+{%- endcomment -%}
+{%- if site.data.notices -%}
+<div class="notices">
+  {%- for notice in site.data.notices -%}
+    {%- unless notice.show == false -%}
+      {%- assign type = notice.type | default: 'note' -%}
+  <blockquote class="{{ type }}">
+    {%- if notice.title %}
+    <span class="{{ type }}-title">{{ notice.title }}</span>
+    {%- endif %}
+    {{ notice.body | markdownify }}
+    {%- if notice.date %}
+    <p class="notice-date">Posted {{ notice.date | date: '%B %-d, %Y' }}</p>
+    {%- endif %}
+  </blockquote>
+    {%- endunless -%}
+  {%- endfor -%}
+</div>
+{%- endif -%}

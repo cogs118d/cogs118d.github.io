@@ -1,0 +1,106 @@
+{%- comment -%}
+  Course calendar: one row per week. Data lives in _data/calendar.yml; the
+  column settings live under `calendar:` in _config.yml.
+
+  Month band: the last `month:` value is carried forward, so only the first
+  week of a month sets it.
+
+  Topic column: a week with `topic:` starts a new block. A week with no topic
+  key continues the block above it, and the border between them is hidden so
+  the two cells read as one. `topic: ''` forces an empty, separate cell.
+{%- endcomment -%}
+{%- assign cfg = site.calendar -%}
+{%- assign section_day = cfg.section_day | default: 'fri' -%}
+{%- assign topic_heading = cfg.topic_heading | default: 'Topic' -%}
+{%- assign days = 'mon,wed,fri' | split: ',' -%}
+{%- assign day_labels = 'Mon,Wed,Fri' | split: ',' -%}
+<div class="cal">
+  <div class="cal-scroll">
+    <table class="cal-table">
+      <thead>
+        <tr>
+          <th scope="col" class="cal-band-head"><span aria-hidden="true">🗓️</span></th>
+          <th scope="col" class="cal-week-head">Week</th>
+          <th scope="col" class="cal-topic-head">{{ topic_heading }}</th>
+          {%- for key in days %}
+          <th scope="col">{{ day_labels[forloop.index0] }} <span class="cal-kind cal-kind-lec">Lecture</span>
+            {%- if key == section_day %} &amp; <span class="cal-kind cal-kind-sec">Section</span>{% endif -%}
+          </th>
+          {%- endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {%- assign month = '' -%}
+        {%- assign seen_topic = false -%}
+        {%- for week in site.data.calendar -%}
+          {%- if week.month and week.month != '' -%}
+            {%- assign month = week.month -%}
+            {%- assign new_band = true -%}
+          {%- else -%}
+            {%- assign new_band = false -%}
+          {%- endif -%}
+        <tr class="cal-row">
+          <th scope="row" class="cal-band cal-band-{{ month | downcase }}">
+            {%- if new_band %}<span class="cal-band-label">{{ month }}</span>{% endif -%}
+          </th>
+          <td class="cal-week">{{ week.week }}</td>
+          {%- if week.topic != nil %}
+            {%- assign seen_topic = true %}
+          <td class="cal-topic">{{ week.topic | markdownify }}</td>
+          {%- elsif seen_topic %}
+          <td class="cal-topic cal-topic-cont"></td>
+          {%- else %}
+          <td class="cal-topic"></td>
+          {%- endif %}
+
+          {%- for key in days -%}
+            {%- assign day = week[key] -%}
+          <td class="cal-day">
+            {%- if day -%}
+            <div class="cal-slot">
+              <div class="cal-datehead">
+                <span class="cal-date{% if day.event %} cal-date-event{% endif %}">{{ day.date }}</span>
+                {%- if day.lec %}<span class="cal-lec">{{ day.lec }}</span>{% endif -%}
+              </div>
+              {%- if day.event %}
+              <p class="cal-event">{{ day.event }}</p>
+              {%- endif %}
+              {%- if day.title %}
+              <p class="cal-title">{{ day.title | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              {%- endif %}
+              {%- if day.guest %}
+              <p class="cal-guest">{{ day.guest | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              {%- endif %}
+              {%- if day.note %}
+              <p class="cal-note">{{ day.note | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              {%- endif %}
+              {%- if day.due %}
+              <ul class="cal-dues">
+                {%- for name in day.due -%}
+                  {%- assign key2 = name | split: ' ' | first -%}
+                  {%- assign url = site.submit[key2] | default: site.submit.default -%}
+                <li><a class="cal-due" href="{{ url }}">{{ name }}</a></li>
+                {%- endfor -%}
+              </ul>
+              {%- endif %}
+            </div>
+            {%- endif -%}
+            {%- if day.section %}
+            <div class="cal-slot cal-sectionslot">
+              <span class="cal-sectionlabel">Section</span>
+              {%- if day.section != 'Section' %}
+              <p class="cal-title">{{ day.section | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              {%- endif %}
+            </div>
+            {%- endif -%}
+          </td>
+          {%- endfor -%}
+        </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+  {%- if cfg.footnote %}
+  <p class="cal-foot">{{ cfg.footnote | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  {%- endif %}
+</div>

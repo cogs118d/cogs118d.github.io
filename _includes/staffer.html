@@ -1,0 +1,45 @@
+{%- comment -%}
+  Renders one staff member's card.
+
+  Parameters:
+    staffer  a staffer document (required)
+    nobio    pass 'true' to show only the photo, name and email
+    bio      the rendered bio to show when nobio is not set
+
+  Used by _layouts/staffer.html (full card, on the Staff page) and by index.md
+  (nobio, so the home page shows the instructor without the bio text).
+
+  NOTE: do not write include tags in this comment. Liquid parses tags inside
+  comment blocks, so an example include is treated as a real one and fails the
+  build with "Invalid syntax for include tag".
+{%- endcomment -%}
+{%- assign s = include.staffer -%}
+<div class="staffer">
+  {% if s.photo %}
+  <img class="staffer-image" src="{{ site.baseurl }}{{ s.subpath }}{{ s.photo }}" alt="">
+  {% endif %}
+  <div>
+    <h3 class="staffer-name">
+      {% if s.website %}
+      <a href="{{ s.website }}">{{ s.name }}</a>
+      {% else %}
+      {{ s.name }}
+      {% endif %}
+      {% if s.pronouns %}
+      <span class="staffer-pronouns">{{ s.pronouns }}</span>
+      {% endif %}
+    </h3>
+    {% if s.email %}
+    <p><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+    {% endif %}
+    {% unless include.nobio %}
+      {% if s.section %}
+      <p class="staffer-meta">Quiz Section: {{ s.section | markdownify | strip_html }}</p>
+      {% endif %}
+      {% if s["office-hours"] %}
+      <p class="staffer-meta">Office Hours: {{ s["office-hours"] | markdownify | strip_html }}</p>
+      {% endif %}
+      {{ include.bio }}
+    {% endunless %}
+  </div>
+</div>

@@ -1,0 +1,23 @@
+# Important info & reminders shown at the top of the home page.
+#
+# This is the whole feature: add an entry here, push, and it appears. Delete an
+# entry (or set `show: false`) and it's gone. Order here is the order on the page.
+#
+# Fields
+#   type  important | note | warning | new | highlight   (default: note)
+#           important = blue, note = purple, warning = red,
+#           new = green, highlight = yellow
+#   body  the text. Markdown works: **bold**, [links](https://...), etc.
+#   title optional, replaces the default uppercase label ("IMPORTANT", "NOTE", ...)
+#   date  optional, shown as a small "Posted ..." line underneath
+#   show  optional, set to false to hide without deleting
+#
+# Tip: use `body: >` and indent the text underneath, as below. That lets you
+# write across several lines without worrying about YAML quoting.
+
+- type: important
+  body: >
+    **Missing a prerequisite?** As long as you can demonstrate that you have the
+    prerequisite knowledge via pre-test, you may enroll in the course via
+    instructor permission. See the [syllabus](syllabus/#course-information)
+    for the full list of prerequisites.

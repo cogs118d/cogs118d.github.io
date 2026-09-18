@@ -1,0 +1,163 @@
+// "Weekly Rhythm" table on the Schedule page (see _layouts/schedule.html).
+//
+// Muted pastels chosen to sit alongside the theme blue ($blue-200, #6795C2)
+// without competing with it. Every cell is dark text on a pale tint, so all
+// combinations clear WCAG AA for body text.
+
+$rhythm-paper:   #fdfcfa;
+$rhythm-rule:    #dfe5ea;
+$rhythm-rule-lt: #edf0f3;
+$rhythm-ink:     #3d4a57;
+$rhythm-ink-lt:  #7c8894;
+
+.rhythm {
+  @include abstract-card();
+  background-color: $rhythm-paper;
+  padding: $sp-5 $sp-4 $sp-4;
+
+  @include mq(md) {
+    padding: $sp-6 $sp-6 $sp-5;
+  }
+}
+
+.rhythm-head {
+  align-items: baseline;
+  border-bottom: 2px solid $rhythm-rule;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sp-2 $sp-4;
+  justify-content: space-between;
+  margin-bottom: $sp-4;
+  padding-bottom: $sp-3;
+}
+
+h2.rhythm-title {
+  color: $rhythm-ink;
+  display: block;
+  font-size: 28px !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+
+  @include mq(md) {
+    font-size: 34px !important;
+  }
+}
+
+.rhythm-subtitle {
+  @extend .fs-3;
+  color: $rhythm-ink-lt;
+  margin: $sp-1 0 0;
+}
+
+.rhythm-meta {
+  @extend .fs-2;
+  color: $rhythm-ink-lt;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: right;
+}
+
+.rhythm-term {
+  @extend .fs-4;
+  color: $rhythm-ink;
+  font-weight: 600;
+}
+
+// Days stay readable by scrolling sideways on narrow screens rather than
+// squeezing five columns into a phone.
+.rhythm-scroll {
+  margin: 0 (-$sp-2);
+  overflow-x: auto;
+  padding: 0 $sp-2;
+}
+
+table.rhythm-table {
+  border-collapse: separate;
+  border-spacing: 4px;
+  display: table;
+  margin: 0;
+  min-width: 720px;
+  table-layout: fixed;
+  width: 100%;
+
+  th,
+  td {
+    background: none;
+    border: 0;
+    padding: 0;
+    vertical-align: top;
+  }
+
+  thead th {
+    @extend .fs-3;
+    border-bottom: 1px solid $rhythm-rule;
+    color: $rhythm-ink;
+    font-weight: 600;
+    padding-bottom: $sp-2;
+    text-align: center;
+  }
+
+  thead th.rhythm-corner {
+    text-align: left;
+  }
+
+  tbody tr + tr th.rhythm-component,
+  tbody tr + tr td {
+    border-top: 1px solid $rhythm-rule-lt;
+    padding-top: 4px;
+  }
+
+  th.rhythm-component {
+    padding-right: $sp-3;
+    text-align: left;
+    width: 20%;
+  }
+}
+
+.rhythm-component-name {
+  @extend .fs-3;
+  color: $rhythm-ink;
+  display: block;
+  font-weight: 600;
+}
+
+.rhythm-component-note {
+  @extend .fs-2;
+  color: $rhythm-ink-lt;
+  display: block;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.rhythm-cell {
+  border-radius: $border-radius;
+  height: 100%;
+  padding: $sp-2;
+  text-align: center;
+}
+
+.rhythm-cell-text {
+  @extend .fs-2;
+  display: block;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.rhythm-cell-note {
+  @extend .fs-1;
+  display: block;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+// Cell kinds. Pale tint + matching darker ink, no heavy fills.
+.rhythm-lecture { background-color: #e6eef6; color: #2f4b66; }
+.rhythm-section { background-color: #e7efe9; color: #33513f; }
+.rhythm-due     { background-color: #f8e8dd; color: #7a4a31; }
+.rhythm-exam    { background-color: #f4e3e4; color: #76414a; }
+.rhythm-hours   { background-color: #eae9f3; color: #464372; }
+.rhythm-work    { background-color: #f2f1ed; color: #59574f; }

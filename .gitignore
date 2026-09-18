@@ -1,0 +1,9 @@
+.DS_Store
+_site/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+vendor/
+
+# generated at build time from _staffers_source.md by _plugins/split_staffers.rb
+_staffers/*.md

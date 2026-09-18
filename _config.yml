@@ -1,0 +1,127 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole site, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: COGS 118D
+tagline: Computational Models of Cognition and Behavior 🧠
+description: Behavioral data is everywhere, revealing how we think, learn, and act.
+author: Lucy Lai
+baseurl: '' # the subpath of your site, e.g. /blog
+url: 'https://cogs118d.github.io' # the base hostname & protocol for your site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - LICENSE
+  - README.md
+
+# Theme settings
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+color_scheme: blue
+search_enabled: true
+heading_anchors: true
+permalink: pretty
+
+# TODO: replace these with the COGS 118D course pages once they exist.
+# They currently point at the general Canvas / Piazza / Gradescope sites.
+aux_links:
+  🖼️ Canvas:
+    - 'https://canvas.ucsd.edu/'
+  🙋🏻 Piazza:
+    - 'https://piazza.com/'
+  💯 Gradescope:
+    - 'https://www.gradescope.com/'
+footer_content:
+
+# Course info shown as badges on the home page
+course_vars:
+  quarter: 'Fall 2026'
+  building: 'COA B27'
+  timings: 'MWF 10:00-10:50am'
+
+# Course calendar settings (_includes/calendar.html, data in _data/calendar.yml)
+calendar:
+  topic_heading: Module
+  section_day: wed     # which day's column header says "Lecture & Section"
+  footnote: All assignments are due by **11:59pm PT**. Assignment names link to where you submit them.
+
+# Callout styles (.important, .note, ...) used by _includes/notices.html and by
+# `{: .important }` in page markdown. The theme defines these in its own
+# _config.yml, but Jekyll does not merge a remote theme's config, so without
+# this block every callout renders as an unstyled paragraph.
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+# Where each assignment gets submitted. _includes/calendar.html looks these up
+# by the FIRST WORD of the assignment name in _data/calendar.yml, so "Quiz 1"
+# and "Quiz 7" both resolve to `Quiz` below, and anything unmatched falls back
+# to `default`. Per the syllabus, Canvas is for reading quizzes and Gradescope
+# is for assignments and the course project.
+# TODO: swap in the COGS 118D course URLs once the Canvas/Gradescope courses exist.
+submit:
+  default: 'https://canvas.ucsd.edu/'
+  Quiz: 'https://canvas.ucsd.edu/'
+  Pre-course: 'https://canvas.ucsd.edu/'
+  Post-course: 'https://canvas.ucsd.edu/'
+  Syllabus: 'https://canvas.ucsd.edu/'
+  Homework: 'https://www.gradescope.com/'
+  Project: 'https://www.gradescope.com/'
+  Final: 'https://www.gradescope.com/'
+
+# Collections for website data
+collections:
+  staffers:
+  schedules:
+  announcements:
+# Default layouts for each collection type
+defaults:
+  - scope:
+      path: ''
+      type: staffers
+    values:
+      layout: staffer
+      subpath: '/assets/images/'
+  - scope:
+      path: ''
+      type: schedules
+    values:
+      layout: schedule
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-include-cache
+  - jemoji

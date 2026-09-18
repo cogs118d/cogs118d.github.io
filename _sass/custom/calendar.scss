@@ -1,0 +1,243 @@
+// Course calendar (_includes/calendar.html + _data/calendar.yml).
+// Same muted palette as the Weekly Rhythm table.
+
+$cal-rule:     #dfe5ea;
+$cal-rule-lt:  #edf0f3;
+$cal-ink:      #3d4a57;
+$cal-ink-lt:   #7c8894;
+$cal-due:      #a33d3d;
+$cal-event:    #b03a3a;
+
+.cal {
+  @include abstract-card();
+  background-color: #fdfcfa;
+  padding: $sp-4 $sp-3;
+
+  @include mq(md) {
+    padding: $sp-5 $sp-5 $sp-4;
+  }
+}
+
+.cal-scroll {
+  margin: 0 (-$sp-2);
+  overflow-x: auto;
+  padding: 0 $sp-2;
+}
+
+table.cal-table {
+  border-collapse: collapse;
+  display: table;
+  margin: 0;
+  min-width: 1040px;
+  table-layout: fixed;
+  width: 100%;
+
+  th,
+  td {
+    background: none;
+    border: 1px solid $cal-rule-lt;
+    padding: $sp-2;
+    vertical-align: top;
+  }
+
+  thead th {
+    @extend .fs-4;
+    border-bottom: 2px solid $cal-rule;
+    color: $cal-ink;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .cal-band-head { width: 38px; }
+  .cal-week-head { width: 66px; }
+  .cal-topic-head { width: 15%; }
+}
+
+.cal-kind {
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 1px 5px;
+}
+
+.cal-kind-lec { background-color: #e6eef6; color: #2f4b66; }
+.cal-kind-sec { background-color: #e7efe9; color: #33513f; }
+
+// Month band down the left edge.
+.cal-band {
+  padding: $sp-1 !important;
+  position: relative;
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.cal-band-label {
+  @extend .fs-4;
+  color: $cal-ink;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+}
+
+.cal-band-sept { background-color: #fbf3e2; }
+.cal-band-oct  { background-color: #fae9dd; }
+.cal-band-nov  { background-color: #f6e2e2; }
+.cal-band-dec  { background-color: #e6eaf5; }
+
+.cal-week {
+  @extend .fs-5;
+  color: $cal-ink;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.cal-topic {
+  @extend .fs-3;
+  color: $cal-ink;
+  line-height: 1.4;
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    display: block;
+  }
+}
+
+.cal-day {
+  padding: 0 !important;
+}
+
+.cal-slot {
+  padding: $sp-2;
+
+  + .cal-slot {
+    border-top: 1px solid $cal-rule-lt;
+  }
+}
+
+.cal-sectionslot {
+  background-color: #f6f9f7;
+}
+
+.cal-datehead {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.cal-date {
+  @extend .fs-3;
+  background-color: #f1ece2;
+  border-radius: 3px;
+  color: #6b5a42;
+  font-weight: 600;
+  padding: 1px 5px;
+}
+
+.cal-date-event {
+  background-color: #f4e3e4;
+  color: #76414a;
+}
+
+.cal-lec {
+  @extend .fs-3;
+  color: $cal-ink-lt;
+  font-weight: 600;
+}
+
+.cal-event {
+  @extend .fs-3;
+  color: $cal-event;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-align: center;
+}
+
+.cal-title {
+  @extend .fs-4;
+  color: $cal-ink;
+  line-height: 1.35;
+  margin: 0;
+  text-align: center;
+}
+
+.cal-note {
+  @extend .fs-3;
+  color: $cal-due;
+  font-style: italic;
+  line-height: 1.35;
+  margin: 4px 0 0;
+  text-align: center;
+}
+
+.cal-sectionlabel {
+  @extend .fs-3;
+  color: #33513f;
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+}
+
+ul.cal-dues {
+  list-style: none;
+  margin: $sp-2 0 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+a.cal-due {
+  @extend .fs-3;
+  color: $cal-due;
+  display: block;
+  line-height: 1.4;
+  text-decoration: underline;
+
+  &::before {
+    content: 'Due: ';
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-image: none;
+    color: darken($cal-due, 12%);
+  }
+}
+
+.cal-foot {
+  @extend .fs-3;
+  color: $cal-ink-lt;
+  margin: $sp-3 0 0;
+}
+
+// A week with no `topic:` continues the module above it. `hidden` wins over
+// the neighbouring cell's solid border in the collapsed-border model, so the
+// two cells read as one merged cell.
+table.cal-table td.cal-topic-cont {
+  border-top: hidden;
+}
+
+// Guest speaker line under a lecture title.
+.cal-guest {
+  @extend .fs-3;
+  color: #4a6f96;
+  font-style: italic;
+  line-height: 1.35;
+  margin: 2px 0 0;
+  text-align: center;
+}
