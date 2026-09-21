@@ -25,7 +25,9 @@ photo: lucy.png
 👩🏻‍🏫 Hi everyone, I'm your instructor for COGS 118D this quarter! 👋 I'm an Assistant Teaching Professor in the Cognitive Science department, and this is my 2nd year at UCSD. In this course, we'll explore how to describe, predict, and explain human behavior with computational models, while building practical skills that are useful for research, industry, and beyond. You're always welcome to my [office hours](https://calendar.app.google/ddydBVxk5wZD8J8B9) to ask questions or just say hello. Looking forward to a great quarter together!
 
 🎓 B.A. from Rice University, Ph.D. in Neuroscience from Harvard
+
 🏠 Houston, TX 🤠
+
 💬 applying to graduate school, living in Japan 🇯🇵, anime, latin dancing 💃
 
 ## ian
@@ -34,7 +36,9 @@ name: Ian Zane
 role: Teaching Assistant
 ---
 🎓 2nd-year COGS PhD student
+
 🏠 
+
 💬 
 
 ## pradyumna
@@ -45,5 +49,7 @@ email: psripada@ucsd.edu
 photo: pradyumna.png
 ---
 🎓 2nd-year MS Data Science student
+
 🏠 Bangalore, India 🇮🇳
+
 💬 sci-fi, documentaries
