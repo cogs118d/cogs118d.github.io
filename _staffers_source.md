@@ -35,7 +35,7 @@ role: Teaching Assistant
 ---
 🎓 2nd-year COGS PhD student\
 🏠  \
-💬  \
+💬  
 
 ## pradyumna
 ---
@@ -46,4 +46,4 @@ photo: pradyumna.png
 ---
 🎓 2nd-year MS Data Science student\
 🏠 Bangalore, India 🇮🇳\
-💬 sci-fi, documentaries\
+💬 sci-fi, documentaries
