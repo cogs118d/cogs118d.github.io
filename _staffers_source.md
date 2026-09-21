@@ -33,11 +33,9 @@ photo: lucy.png
 name: Ian Zane
 role: Teaching Assistant
 ---
-🎓 2nd-year COGS PhD student
-
-🏠 
-
-💬 
+🎓 2nd-year COGS PhD student\
+🏠  \
+💬  \
 
 ## pradyumna
 ---
@@ -46,8 +44,6 @@ role: Reader
 email: psripada@ucsd.edu
 photo: pradyumna.png
 ---
-🎓 2nd-year MS Data Science student
-
-🏠 Bangalore, India 🇮🇳
-
-💬 sci-fi, documentaries
+🎓 2nd-year MS Data Science student\
+🏠 Bangalore, India 🇮🇳\
+💬 sci-fi, documentaries\
