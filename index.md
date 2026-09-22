@@ -34,7 +34,9 @@ seo:
 * **Prof. Lai**:
   * Wed, 2-3:15pm (1-1, <a href="https://calendar.app.google/1nebbtvdYdn6WFpw5" target="_blank" rel="noopener">book &#x2197;</a> only) @ CSB 244 or Zoom
   * Wed, 3:15-4:30pm (open office hours, walk-in!) @ CSB 244
-* **TA**: During discussion section (Wed, 4pm & 5pm @ CSB 004)
+* **TA: Ian**:
+  * During discussion section (Wed, 4-5:50pm @ CSB 004)
+  * Mon, 3pm @ CSB 123 & [Zoom] 
 
 ## Course Calendar
 
