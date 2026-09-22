@@ -7,7 +7,7 @@ description: A listing of all the course staff members.
 
 # Course Staff
 
-## Meet the course staff! 
+## Get to know your COGS 118D course staff! 
 🎓 degree
 🏠 hometown
 💬 talk to me about...
