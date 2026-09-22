@@ -78,7 +78,7 @@
               <ul class="cal-dues">
                 {%- for name in day.due -%}
                   {%- assign key2 = name | split: ' ' | first -%}
-                  {%- assign url = site.submit[key2] | default: site.submit.default -%}
+                  {%- assign url = site.submit[name] | default: site.submit[key2] | default: site.submit.default -%}
                 <li><a class="cal-due" href="{{ url }}">{{ name }}</a></li>
                 {%- endfor -%}
               </ul>
