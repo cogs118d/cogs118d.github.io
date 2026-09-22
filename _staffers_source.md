@@ -42,7 +42,7 @@ photo: ian.png
 ## pradyumna
 ---
 name: Pradyumna
-role: Grader
+role: Reader
 email: psripada@ucsd.edu
 photo: pradyumna.png
 ---
