@@ -22,7 +22,7 @@ website: https://www.lucylai.com
 photo: lucy.png
 ---
 
-👩🏻‍🏫 Hi everyone, I'm your instructor for COGS 118D this quarter! 👋 I'm an Assistant Teaching Professor in the Cognitive Science department, and this is my 2nd year at UCSD. In this course, we'll explore how to describe, predict, and explain human behavior with computational models, while building practical skills that are useful for research, industry, and beyond. You're always welcome to my [office hours](https://calendar.app.google/ddydBVxk5wZD8J8B9) to ask questions or just say hello. Looking forward to a great quarter together!
+👩🏻‍🏫 Hi everyone, I'm your instructor for COGS 118D this quarter! 👋 I'm an Assistant Teaching Professor in the Cognitive Science department, and this is my 2nd year at UCSD. In this course, we'll explore how to describe, predict, and explain human behavior with computational models, while building practical skills that are useful for research, industry, and beyond. You're always welcome to my [office hours](https://calendar.app.google/ddydBVxk5wZD8J8B9) to ask questions or just say hello (there will be snacks). Looking forward to a great quarter together!
 
 🎓 B.A. from Rice University, Ph.D. in Neuroscience from Harvard\
 🏠 Houston, TX 🤠\
@@ -32,10 +32,12 @@ photo: lucy.png
 ---
 name: Ian Zane
 role: Teaching Assistant
+email: izane@ucsd.edu
+photo: ian.png
 ---
-🎓 2nd-year COGS PhD student\
-🏠  \
-💬  
+🎓 2nd-year Cognitive Science PhD student\
+🏠 New Providence, NJ\
+💬 fantasy novels, card & strategy Games, rats & cats, doing a PhD, COGS major
 
 ## pradyumna
 ---
