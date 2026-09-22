@@ -11,7 +11,7 @@
 # Site settings
 title: COGS 118D
 tagline: Computational Models of Cognition and Behavior 🧠
-description: Behavioral data is everywhere, revealing how we think, learn, and act.
+description: 
 author: Lucy Lai
 baseurl: '' # the subpath of your site, e.g. /blog
 url: 'https://cogs118d.github.io' # the base hostname & protocol for your site
