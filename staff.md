@@ -7,6 +7,11 @@ description: A listing of all the course staff members.
 
 # Course Staff
 
+## Meet the course staff! 
+🎓 degree
+🏠 hometown
+💬 talk to me about...
+
 {% comment %}
   Everyone on this page is generated from _staffers_source.md at build time by
   _plugins/split_staffers.rb. To add, remove or edit a person, edit that file.
