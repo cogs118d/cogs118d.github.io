@@ -41,7 +41,7 @@ photo: ian.png
 
 ## pradyumna
 ---
-name: Pradyumna
+name: Pradyumna Sripada
 role: Reader
 email: psripada@ucsd.edu
 photo: pradyumna.png
