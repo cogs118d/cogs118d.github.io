@@ -8,8 +8,8 @@ description: A listing of all the course staff members.
 # Course Staff
 
 ## Get to know your COGS 118D course staff! 
-🎓 degree
-🏠 hometown
+🎓 degree\
+🏠 hometown\
 💬 talk to me about...
 
 {% comment %}
