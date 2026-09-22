@@ -76,10 +76,18 @@
               {%- endif %}
               {%- if day.due %}
               <ul class="cal-dues">
-                {%- for name in day.due -%}
-                  {%- assign key2 = name | split: ' ' | first -%}
-                  {%- assign url = site.submit[name] | default: site.submit[key2] | default: site.submit.default -%}
-                <li><a class="cal-due" href="{{ url }}">{{ name }}</a></li>
+                {%- for item in day.due -%}
+                  {%- comment -%} an entry is either "Quiz 1" or {name:, url:} {%- endcomment -%}
+                  {%- if item.name -%}
+                    {%- assign dname = item.name -%}
+                    {%- assign durl = item.url | default: '' -%}
+                  {%- else -%}
+                    {%- assign dname = item -%}
+                    {%- assign durl = '' -%}
+                  {%- endif -%}
+                  {%- assign dkey = dname | split: ' ' | first -%}
+                  {%- assign url = durl | default: site.submit[dname] | default: site.submit[dkey] | default: site.submit.default -%}
+                <li><a class="cal-due" href="{{ url }}">{{ dname }}</a></li>
                 {%- endfor -%}
               </ul>
               {%- endif %}
