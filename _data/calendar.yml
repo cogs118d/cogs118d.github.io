@@ -50,7 +50,8 @@
     due: 
       - name: Pre-course survey
         url: https://docs.google.com/forms/d/e/1FAIpQLSdsDotBSqipI6OeTDi5rGMq9bheRKzrMGyZkXBjgPg9FqNxIg/viewform?usp=dialog
-      - Syllabus quiz
+      - name: Syllabus quiz
+        url: https://canvas.ucsd.edu/courses/78359/quizzes/269485
   wed:
     date: Sept 30
     lec: Lec 2
