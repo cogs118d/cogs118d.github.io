@@ -7,54 +7,32 @@ description: Exam dates, format, and policies for COGS 118D.
 
 # Exams
 
-There are **3 in-class exams** in this course, spaced roughly 3 weeks apart. They are **non-cumulative** — each one covers only the material since the last exam. Please mark them in your calendar!
+There are 3 in-class exams spaced ~3 weeks apart; they are **non-cumulative, closed-note, and 50 minutes long**, with 20 multiple-choice questions (including select-all questions) and 2 free-response questions.
 
-* **Exam 1** — Wednesday, **Oct 21**, in class
-* **Exam 2** — Friday, **Nov 13**, in class
-* **Exam 3** — Wednesday, **Dec 2**, in class
+* **Exam 1** — Wednesday, **Oct 21**
+* **Exam 2** — Friday, **Nov 13**
+* **Exam 3** — Wednesday, **Dec 2**
 
-{: .important }
-There is **no sit-down final exam** in this course. The [final project]({{ site.baseurl }}/project/) is due **Monday, Dec 7 @ 11:59pm** instead.
+There is **NO** sit-down final exam. The [final project]({{ site.baseurl }}/project/) is due on **Dec 7 @ 11:59pm** instead.
 
-## Format
+Quizzes are closed-note and mirror the timing and content of exams (half the time and content). They can be retaken as many times as needed until you achieve 100%.
 
-Each exam is **50 minutes** and **closed-note**, with:
+Sections will be used for (1) review of course material (teaching staff will walk through exam practice questions) and (2) open homework help/office hours.
 
-* **20 multiple-choice questions** (including select-all questions)
-* **2 free-response questions**
+## Can I bring a cheat sheet to the exams?
 
-Your **weekly quizzes** mirror the timing and content of the exams at half the length, so they are the best preparation available — and you can retake them as many times as you like until you get 100%.
+No, all exams are closed-note. However, students who **make** _and_ **submit** handwritten cheat sheets (no page limit) _before_ the exam, via Gradescope, will earn **+1 extra course point** (the logic being that exams are meant to test genuine mastery of course material, but making hand-written cheat sheets is an excellent way to study — and I want to encourage that!).
 
-Discussion sections are used partly to **review course material**, where the teaching staff walk through exam practice questions.
+## Do you curve exams?
 
-## Cheat sheets
+**Please note** that I do not curve exams. I strive to write fair exams that test knowledge taught in class, and will offer many practice problems that are representative of what's on the exam. Since this is the first time I'm offering this course, I welcome student feedback on the exams and will make fair adjustments where needed. In general, I aim for exam averages to fall between **~75-80%** (widely regarded in psychometrics as a healthy score for a fair exam).
 
-Cheat sheets are **not permitted during the exam**. However, if you **make and submit a handwritten cheat sheet via Gradescope _before_ the exam**, you earn **+1 course point** — up to 3 points across the three exams.
+## Can I request a regrade of my exam?
 
-There is **no page limit**. The logic: exams are meant to test genuine mastery, but making handwritten cheat sheets is an excellent way to study, and that's worth encouraging.
-
-{: .warning }
-The cheat sheet must be **handwritten** and submitted **before** the exam to earn the point.
-
-## How exams are graded
-
-Exams are worth **17 points each (51 points total)**, the largest single component of your grade. Cheat sheets add up to 3 more.
-
-{: .important }
-**I do not curve exams.** I strive to write fair exams that test knowledge taught in class, and will offer many practice problems representative of what's on the exam. In general I aim for exam averages to fall between **~75-80%**, widely regarded in psychometrics as a healthy range for a fair exam.
-
-Since this is the first time I'm offering this course, I welcome student feedback on the exams and will make fair adjustments where needed.
-
-## Requesting a regrade
-
-You can request a regrade of an exam **within 48 hours (2 days)** of grades being released, through **Gradescope**. Regrades requested after 48 hours will not be fulfilled.
+**Yes.** You can request a regrade of **homeworks, project checkpoints,** and **exams** within 48 hours (2 days) of the grades being released. For **homeworks** and **exams**, please request the regrade through Gradescope. For project checkpoints, please contact your project mentor directly. Regrades requested after 48 hours will not be fulfilled.
 
 ## What happens if I miss an exam or have testing accommodations?
 
-We will use the [Triton Testing Center (TTC)](https://tritontesting.ucsd.edu) located in **Pepper Canyon Hall 364** to administer exams for students with documented accommodations and for legitimate excused absences (this does **NOT** include voluntary travel).
+We will use the [Triton Testing Center (TTC)](https://tritontesting.ucsd.edu) located in Pepper Canyon Hall 364 to administer exams for students with documented accommodations and for legitimate excused absences (does NOT include voluntary travel).
 
-**If you know you need to miss an exam for a legitimate reason, please let Prof. Lai know ASAP.** You may schedule your make-up exam within a **1-week window** after the initial exam date.
-
-Those with **documented testing accommodations** must schedule to take the exam on the **same day** as everyone else.
-
-Other exceptions will only be granted under **extenuating circumstances** (sudden illness, family situations).
+**If you know you need to miss an exam for a legitimate reason, please let Prof. Lai know ASAP.** You may schedule your make-up exam within a 1-week window after the initial exam date. (Those with documented testing accommodations must schedule to take the exam the same day as everyone else). Other exceptions will only be granted under **extenuating circumstances** (sudden illness, family situations).
