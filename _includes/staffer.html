@@ -30,7 +30,7 @@
       {% endif %}
     </h3>
     {% if s.email %}
-    <p><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+    <p class="staffer-email"><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
     {% endif %}
     {% unless include.nobio %}
       {% if s.section %}

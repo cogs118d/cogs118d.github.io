@@ -13,6 +13,13 @@
     margin: $sp-1 !important;
   }
 
+  // The email sits under the name; a step down from it rather than matching
+  // the body text. Scoped to its own class so bios on the Staff page are
+  // unaffected.
+  .staffer-email {
+    @extend .fs-3;
+  }
+
   .staffer-pronouns {
     @extend .label, .text-grey-dk-100, .bg-grey-lt-200;
   }
