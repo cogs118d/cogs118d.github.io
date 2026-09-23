@@ -173,18 +173,21 @@ summary {
   padding: 0.22em 0.66em;
 }
 
-// The room badge links to Google Maps. Set the colour explicitly rather than
-// with `inherit`, which loses to the theme's own link colour, and include
-// :link/:visited so the rule outranks it.
-.label.course-badge a,
-.label.course-badge a:link,
-.label.course-badge a:visited,
-.label.course-badge a:hover {
+// The room badge links to Google Maps. Deliberately NOT `.label.course-badge a`:
+// `.label` is @extended by `div.highlighter-rouge[overlay]::after`, so Sass
+// rewrites any selector containing `.label` to include that extender too. For a
+// descendant selector that yields `...::after a`, which is invalid, and one
+// invalid selector in a list makes the browser drop the whole rule. Matching on
+// `.course-badge` alone avoids the extend chain and still outranks `a`.
+.course-badge a,
+.course-badge a:link,
+.course-badge a:visited,
+.course-badge a:hover {
   color: $white;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.label.course-badge a:hover {
+.course-badge a:hover {
   background-image: none;
 }
