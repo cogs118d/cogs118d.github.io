@@ -33,15 +33,13 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 
-# TODO: replace these with the COGS 118D course pages once they exist.
-# They currently point at the general Canvas / Piazza / Gradescope sites.
 aux_links:
   🖼️ Canvas:
-    - 'https://canvas.ucsd.edu/'
+    - 'https://canvas.ucsd.edu/courses/78359'
   🙋🏻 Piazza:
-    - 'https://piazza.com/'
+    - 'https://piazza.com/class/mua9yfea6ly30f'
   💯 Gradescope:
-    - 'https://www.gradescope.com/'
+    - 'https://www.gradescope.com/courses/1406102'
 footer_content:
 
 # Course info shown as badges on the home page
@@ -82,16 +80,15 @@ callouts:
 # and "Quiz 7" both resolve to `Quiz` below, and anything unmatched falls back
 # to `default`. Per the syllabus, Canvas is for reading quizzes and Gradescope
 # is for assignments and the course project.
-# TODO: swap in the COGS 118D course URLs once the Canvas/Gradescope courses exist.
 submit:
-  default: 'https://canvas.ucsd.edu/'
-  Quiz: 'https://canvas.ucsd.edu/'
-  Pre-course: 'https://canvas.ucsd.edu/'
-  Post-course: 'https://canvas.ucsd.edu/'
-  Syllabus: 'https://canvas.ucsd.edu/'
-  Homework: 'https://www.gradescope.com/'
-  Mini-Project: 'https://www.gradescope.com/'
-  Final: 'https://www.gradescope.com/'
+  default: 'https://canvas.ucsd.edu/courses/78359'
+  Quiz: 'https://canvas.ucsd.edu/courses/78359'
+  Pre-course: 'https://canvas.ucsd.edu/courses/78359'
+  Post-course: 'https://canvas.ucsd.edu/courses/78359'
+  Syllabus: 'https://canvas.ucsd.edu/courses/78359'
+  Homework: 'https://www.gradescope.com/courses/1406102'
+  Mini-Project: 'https://www.gradescope.com/courses/1406102'
+  Final: 'https://www.gradescope.com/courses/1406102'
 
 # Collections for website data
 collections:
