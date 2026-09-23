@@ -241,3 +241,19 @@ table.cal-table td.cal-topic-cont {
   margin: 2px 0 0;
   text-align: center;
 }
+
+// Weeks with no discussion section.
+.cal-slot.cal-nosection {
+  background-color: #f9eeee;
+}
+
+.cal-nosection-text {
+  @extend .fs-3;
+  color: #b03a3a;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}

@@ -54,7 +54,7 @@ course_vars:
 calendar:
   topic_heading: Module
   section_day: wed     # which day's column header says "Lecture & Section"
-  footnote: All assignments are due by **11:59pm PT**. Assignment names link to where you submit them.
+  footnote: All assignments are due by **11:59pm PT**. Assignment names link to where you submit them. **&#42;** indicates a group submission.
 
 # Callout styles (.important, .note, ...) used by _includes/notices.html and by
 # `{: .important }` in page markdown. The theme defines these in its own
@@ -90,7 +90,7 @@ submit:
   Post-course: 'https://canvas.ucsd.edu/'
   Syllabus: 'https://canvas.ucsd.edu/'
   Homework: 'https://www.gradescope.com/'
-  Project: 'https://www.gradescope.com/'
+  Mini-Project: 'https://www.gradescope.com/'
   Final: 'https://www.gradescope.com/'
 
 # Collections for website data

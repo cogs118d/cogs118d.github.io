@@ -118,8 +118,8 @@
   mon:
     date: Oct 26
     lec: Lec 12
-    title: Reinforcement learning as a cognitive model of decision making
-    due: [Project 1 (slides & video)]
+    title: "**Reinforcement learning** as a cognitive model of decision making"
+    due: [Mini-Project 1 (slides & video)]
   wed:
     date: Oct 28
     lec: Lec 13
@@ -145,45 +145,46 @@
   fri:
     date: Nov 6
     lec: Lec 17
-    title: "Guest lecture: Ionatan Kuperwajs"
-    guest: Postdoctoral Fellow, Princeton CoCoSci Lab
+    title: "**Bayesian inference** as a model of perception"
     note: Last day to drop with a "W"
 
 - week: 7
   mon:
     date: Nov 9
-    event: EXAM 2
-    due: [Quiz 5, Homework 5]
+    title: Bayesian models of perception (cont'd)
+    due: [Quiz 5, Homework 5, Project groups survey]
   wed:
     date: Nov 11
-    event: NO CLASS / SECTION
+    event: NO CLASS
     note: Veterans Day holiday
+    section: No section
   fri:
     date: Nov 13
-    event: NO CLASS
-    note: Prof. Lai giving talks in NYC
+    event: EXAM 2
+    title: _Project groups assigned_
 
 - week: 8
   mon:
     date: Nov 16
     lec: Lec 18
-    title: Bayesian inference as a model of perception and beliefs
-    due: [Project 2 (slides & video)]
+    title: "Guest lecture: Ionatan Kuperwajs"
+    guest: Postdoctoral Fellow, Princeton CoCoSci Lab
+    due: [Mini-Project 2 (slides & video)]
   wed:
     date: Nov 18
     lec: Lec 19
-    title: Bayesian models (cont'd)
+    title: "**Bayesian models** of action"
     section: Section
   fri:
     date: Nov 20
     lec: Lec 20
-    title: Bayesian models (cont'd)
+    title: Bayesian models of action (cont'd)
 
 - week: 9
   mon:
     date: Nov 23
     lec: Lec 21
-    title: Hidden Markov Models (HMMs) as a model of unobserved cognitive states
+    title: "**Hidden Markov Models (HMMs)** as a model of unobserved cognitive states"
     due: [Quiz 6, Homework 6]
   wed:
     date: Nov 25
@@ -207,7 +208,7 @@
   wed:
     date: Dec 2
     event: EXAM 3
-    section: "Office hours ONLY, for project help/feedback. No attendance credit."
+    section: Section
   fri:
     date: Dec 4
     event: COURSE PROJECT EXPO
@@ -217,9 +218,9 @@
   topic: ''
   mon:
     date: Dec 7
+    due: ["Final Project (slides & video)*"]
   wed:
     date: Dec 9
   fri:
     date: Dec 11
     event: NO FINAL EXAM
-    due: [Final Project (slides & video)]

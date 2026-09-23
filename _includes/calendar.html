@@ -94,12 +94,19 @@
             </div>
             {%- endif -%}
             {%- if day.section %}
+              {%- assign sec = day.section | downcase -%}
+              {%- if sec contains 'no section' %}
+            <div class="cal-slot cal-sectionslot cal-nosection">
+              <p class="cal-nosection-text">{{ day.section }}</p>
+            </div>
+              {%- else %}
             <div class="cal-slot cal-sectionslot">
               <span class="cal-sectionlabel">Section</span>
               {%- if day.section != 'Section' %}
               <p class="cal-title">{{ day.section | markdownify | remove: '<p>' | remove: '</p>' }}</p>
               {%- endif %}
             </div>
+              {%- endif %}
             {%- endif -%}
           </td>
           {%- endfor -%}

@@ -63,21 +63,20 @@ rhythm:
     note: Slides & video, on Gradescope
     cells:
       Monday:
-        text: Project 1 · Oct 26<br>Project 2 · Nov 16
+        text: Mini-Project 1 · Oct 26<br>Mini-Project 2 · Nov 16<br>Final project · Dec 7
         kind: due
       Friday:
-        text: Final project · Dec 11
-        note: Project Expo · Dec 4
+        text: Project Expo · Dec 4
         kind: due
 
   - component: In-class exams
     note: During lecture
     cells:
-      Monday:
-        text: Exam 2 · Nov 9
-        kind: exam
       Wednesday:
         text: Exam 1 · Oct 21<br>Exam 3 · Dec 2
+        kind: exam
+      Friday:
+        text: Exam 2 · Nov 13
         kind: exam
 
   - component: Office hours
@@ -89,8 +88,12 @@ rhythm:
 
   - component: ''
     cells:
+      Monday:
+        text: Ian (TA)
+        note: 3pm @ CSB 123 or Zoom
+        kind: hours
       Wednesday:
-        text: TA
+        text: Ian (TA)
         note: During discussion section
         kind: hours
 
