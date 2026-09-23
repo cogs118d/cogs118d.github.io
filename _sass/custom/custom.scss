@@ -167,21 +167,24 @@ summary {
 // index.md as `{: .label .label-blue .course-badge }`. `.label.course-badge`
 // outbids the theme's `.label:not(g)`, which sets the smaller size.
 .label.course-badge {
-  @extend .fs-4;
+  @extend .fs-3;
 
   font-weight: 600;
-  padding: 0.24em 0.72em;
+  padding: 0.22em 0.66em;
 }
 
-// A linked badge (the room, which points at Google Maps) keeps the pill's
-// own text colour rather than turning link-blue on a blue background.
-.label.course-badge a {
-  color: inherit;
+// The room badge links to Google Maps. Set the colour explicitly rather than
+// with `inherit`, which loses to the theme's own link colour, and include
+// :link/:visited so the rule outranks it.
+.label.course-badge a,
+.label.course-badge a:link,
+.label.course-badge a:visited,
+.label.course-badge a:hover {
+  color: $white;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
 
-  &:hover {
-    background-image: none;
-    text-decoration: underline;
-  }
+.label.course-badge a:hover {
+  background-image: none;
 }

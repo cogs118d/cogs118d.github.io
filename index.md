@@ -10,8 +10,9 @@ seo:
 
 # {{ site.tagline }}
 {: .mb-2 }
-{{ site.description }}
+{% if site.description != '' %}{{ site.description }}
 {: .fs-6 .fw-300 }
+{% endif %}
 
 {% assign instructors = site.staffers | where: 'role', 'Instructor' %}
 {% for staffer in instructors %}{% include staffer.html staffer=staffer nobio='true' %}{% endfor %}
