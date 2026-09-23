@@ -83,7 +83,7 @@ rhythm:
     cells:
       Wednesday:
         text: Prof. Lai
-        note: 2–3:15pm 1-1s (booked)<br>3:15–4:30pm open, walk-in
+        note: 2–3:15pm 1-1s (<a href="https://calendar.app.google/AFfkzCq6sAxN44oe7" target="_blank" rel="noopener">booked</a>)<br>3:15–4:30pm open, walk-in
         kind: hours
 
   - component: ''

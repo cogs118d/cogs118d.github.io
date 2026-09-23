@@ -145,3 +145,20 @@ summary {
     opacity: 0.7;
   }
 }
+
+// Two side-by-side columns that stack on narrow screens. Used on the home
+// page so Discussion Sections and Office Hours sit next to each other.
+.two-col {
+  display: grid;
+  gap: 0 $sp-6;
+  grid-template-columns: 1fr;
+
+  @include mq(md) {
+    align-items: start;
+    grid-template-columns: 1fr 1.3fr;
+  }
+
+  > div > :first-child {
+    margin-top: 0;
+  }
+}

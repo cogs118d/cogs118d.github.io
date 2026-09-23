@@ -30,12 +30,18 @@ seo:
 
 {% include notices.html %}
 
+<div class="two-col" markdown="1">
+<div markdown="1">
+
 ## Discussion Sections
 
 Both sections meet on **Wednesdays @ CSB 004** with **Ian**.
 
 * **W, 4-4:50pm**
 * **W, 5-5:50pm**
+
+</div>
+<div markdown="1">
 
 ## Office Hours
 * **Prof. Lai**:
@@ -44,6 +50,9 @@ Both sections meet on **Wednesdays @ CSB 004** with **Ian**.
 * **Ian** (TA):
   * Mon, 3pm @ CSB 123 or <a href="https://ucsd.zoom.us/j/3497925056?pwd=BYldMAJhbdzT4LV8k3OHIP5seWoYk4.1" target="_blank" rel="noopener">Zoom &#x2197;</a>
   * During discussion section (Wed, 4-5:50pm @ CSB 004)
+
+</div>
+</div>
 
 ## Course Calendar
 
