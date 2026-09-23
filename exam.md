@@ -15,7 +15,7 @@ description: Exam dates, format, and policies for COGS 118D.
 {:toc}
 </details>
 
-There are 3 in-class exams spaced ~3 weeks apart; they are **non-cumulative, closed-note, and 50 minutes long**, with 20 multiple-choice questions (including select-all questions) and 2 free-response questions.
+There are 3 in-class exams spaced ~3 weeks apart; they are **non-cumulative, closed-note, and 50 minutes long**, with multiple-choice questions (including select-all questions) and free-response questions.
 
 * **Exam 1** — Wednesday, **Oct 21**
 * **Exam 2** — Friday, **Nov 13**
