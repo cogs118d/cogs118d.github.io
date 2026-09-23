@@ -80,13 +80,15 @@ rhythm:
         kind: exam
 
   - component: Office hours
+    group: hours
     cells:
       Wednesday:
         text: Prof. Lai
-        note: 2–3:15pm 1-1s (<a href="https://calendar.app.google/AFfkzCq6sAxN44oe7" target="_blank" rel="noopener">booked</a>)<br>3:15–4:30pm open, walk-in
+        note: 2–3:15pm 1-1s (<a href="https://calendar.app.google/AFfkzCq6sAxN44oe7" target="_blank" rel="noopener">booked</a>)<br>3:15–4:30pm open, walk-in<br>@ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 244 &#x2197;</a>
         kind: hours
 
   - component: ''
+    group: hours
     cells:
       Monday:
         text: Ian (TA)

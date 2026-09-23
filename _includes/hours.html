@@ -1,0 +1,48 @@
+{%- comment -%}
+  A compact office-hours grid for the home page: the same card as the weekly
+  rhythm, but only the rows tagged `group: hours` in _schedules/weekly.md and
+  without the component column. One source of truth - edit weekly.md and both
+  this and the Schedule page follow.
+{%- endcomment -%}
+{%- assign sched = site.schedules | first -%}
+<div class="rhythm rhythm-compact">
+  <div class="rhythm-scroll">
+    <table class="rhythm-table">
+      <thead>
+        <tr>
+          {%- for day in sched.days %}
+          <th scope="col">{{ day }}</th>
+          {%- endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {%- for row in sched.rhythm -%}
+          {%- if row.group == 'hours' %}
+        <tr>
+          {%- assign skip = 0 -%}
+          {%- for day in sched.days -%}
+            {%- if skip > 0 -%}
+              {%- assign skip = skip | minus: 1 -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- assign cell = row.cells[day] -%}
+            {%- if cell -%}
+              {%- assign span = cell.span | default: 1 -%}
+              {%- assign skip = span | minus: 1 %}
+          <td colspan="{{ span }}">
+            <div class="rhythm-cell rhythm-{{ cell.kind | default: 'hours' }}">
+              <span class="rhythm-cell-text">{{ cell.text }}</span>
+              {%- if cell.note %}<span class="rhythm-cell-note">{{ cell.note }}</span>{% endif %}
+            </div>
+          </td>
+            {%- else %}
+          <td></td>
+            {%- endif -%}
+          {%- endfor %}
+        </tr>
+          {%- endif -%}
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

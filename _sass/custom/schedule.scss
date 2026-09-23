@@ -161,3 +161,13 @@ table.rhythm-table {
 .rhythm-exam    { background-color: #f4e3e4; color: #76414a; }
 .rhythm-hours   { background-color: #eae9f3; color: #464372; }
 .rhythm-work    { background-color: #f2f1ed; color: #59574f; }
+
+// The office-hours-only grid on the home page (_includes/hours.html). Same
+// card, no component column, so it needs less room and no heading rule.
+.rhythm-compact {
+  padding-top: $sp-3;
+
+  table.rhythm-table {
+    min-width: 560px;
+  }
+}
