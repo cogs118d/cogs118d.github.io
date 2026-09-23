@@ -162,3 +162,13 @@ summary {
     margin-top: 0;
   }
 }
+
+// The course info badges under the title on the home page. Written in
+// index.md as `{: .label .label-blue .course-badge }`. `.label.course-badge`
+// outbids the theme's `.label:not(g)`, which sets the smaller size.
+.label.course-badge {
+  @extend .fs-4;
+
+  font-weight: 600;
+  padding: 0.24em 0.72em;
+}

@@ -17,13 +17,13 @@ seo:
 {% for staffer in instructors %}{% include staffer.html staffer=staffer nobio='true' %}{% endfor %}
 
 {{ site.course_vars.quarter }}
-{: .label .label-blue }
+{: .label .label-blue .course-badge }
 
 {{ site.course_vars.building }}
-{: .label .label-blue }
+{: .label .label-blue .course-badge }
 
 {{ site.course_vars.timings }}
-{: .label .label-blue }
+{: .label .label-blue .course-badge }
 
 
 {% comment %} Important info & reminders: edit _data/notices.yml {% endcomment %}
@@ -35,7 +35,7 @@ seo:
 
 ## Discussion Sections
 
-Both sections meet on **Wednesdays @ CSB 004** with **Ian**.
+Both sections meet on **Wednesdays @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 004 &#x2197;</a>** with **Ian**.
 
 * **W, 4-4:50pm**
 * **W, 5-5:50pm**
@@ -45,11 +45,11 @@ Both sections meet on **Wednesdays @ CSB 004** with **Ian**.
 
 ## Office Hours
 * **Prof. Lai**:
-  * Wed, 2-3:15pm (1-1, <a href="https://calendar.app.google/1nebbtvdYdn6WFpw5" target="_blank" rel="noopener">book &#x2197;</a> only) @ CSB 244 or <a href="https://ucsd.zoom.us/my/lucylai" target="_blank" rel="noopener">Zoom &#x2197;</a>
-  * Wed, 3:15-4:30pm (open office hours, walk-in!) @ CSB 244
+  * Wed, 2-3:15pm (1-1, <a href="https://calendar.app.google/1nebbtvdYdn6WFpw5" target="_blank" rel="noopener">book &#x2197;</a> only) @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 244 &#x2197;</a> or <a href="https://ucsd.zoom.us/my/lucylai" target="_blank" rel="noopener">Zoom &#x2197;</a>
+  * Wed, 3:15-4:30pm (open office hours, walk-in!) @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 244 &#x2197;</a>
 * **Ian** (TA):
-  * Mon, 3pm @ CSB 123 or <a href="https://ucsd.zoom.us/j/3497925056?pwd=BYldMAJhbdzT4LV8k3OHIP5seWoYk4.1" target="_blank" rel="noopener">Zoom &#x2197;</a>
-  * During discussion section (Wed, 4-5:50pm @ CSB 004)
+  * Mon, 3pm @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 123 &#x2197;</a> or <a href="https://ucsd.zoom.us/j/3497925056?pwd=BYldMAJhbdzT4LV8k3OHIP5seWoYk4.1" target="_blank" rel="noopener">Zoom &#x2197;</a>
+  * During discussion section (Wed, 4-5:50pm @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 004 &#x2197;</a>)
 
 </div>
 </div>

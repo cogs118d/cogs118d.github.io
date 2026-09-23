@@ -34,7 +34,7 @@ rhythm:
         kind: lecture
 
   - component: Discussion section
-    note: Wednesdays @ CSB 004
+    note: Wednesdays @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 004 &#x2197;</a>
     cells:
       Wednesday:
         text: S1 · 4–4:50pm<br>S2 · 5–5:50pm
@@ -90,7 +90,7 @@ rhythm:
     cells:
       Monday:
         text: Ian (TA)
-        note: 3pm @ CSB 123 or Zoom
+        note: 3pm @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 123 &#x2197;</a> or Zoom
         kind: hours
       Wednesday:
         text: Ian (TA)
