@@ -15,9 +15,6 @@
 # Tip: use `body: >` and indent the text underneath, as below. That lets you
 # write across several lines without worrying about YAML quoting.
 
-- type: important
+- type: note
   body: >
-    **Missing a prerequisite?** As long as you can demonstrate that you have the
-    prerequisite knowledge via pre-test, you may enroll in the course via
-    instructor permission. See the [syllabus](syllabus/#course-information)
-    for the full list of prerequisites.
+    If you are joining the course late, please complete all assignments by the Friday of Week 3 (there will be no late penalty and you do not need to email us)! 
