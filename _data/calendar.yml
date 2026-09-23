@@ -47,7 +47,10 @@
     date: Sept 28
     lec: Lec 1
     title: "Everything is a GLM: distribution families, linear predictors, link functions"
-    due: [Pre-course survey, Syllabus quiz]
+    due: 
+      - name: Pre-course survey
+        url: https://docs.google.com/forms/d/e/1FAIpQLSdsDotBSqipI6OeTDi5rGMq9bheRKzrMGyZkXBjgPg9FqNxIg/viewform?usp=dialog
+      - Syllabus quiz
   wed:
     date: Sept 30
     lec: Lec 2
