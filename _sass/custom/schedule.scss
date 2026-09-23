@@ -124,7 +124,7 @@ table.rhythm-table {
 }
 
 .rhythm-component-note {
-  @extend .fs-2;
+  @extend .fs-3;
   color: $rhythm-ink-lt;
   display: block;
   font-weight: 400;
@@ -139,14 +139,14 @@ table.rhythm-table {
 }
 
 .rhythm-cell-text {
-  @extend .fs-2;
+  @extend .fs-3;
   display: block;
   font-weight: 600;
   line-height: 1.35;
 }
 
 .rhythm-cell-note {
-  @extend .fs-1;
+  @extend .fs-2;
   display: block;
   font-weight: 400;
   line-height: 1.35;
