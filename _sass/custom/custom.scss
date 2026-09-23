@@ -172,3 +172,16 @@ summary {
   font-weight: 600;
   padding: 0.24em 0.72em;
 }
+
+// A linked badge (the room, which points at Google Maps) keeps the pill's
+// own text colour rather than turning link-blue on a blue background.
+.label.course-badge a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    background-image: none;
+    text-decoration: underline;
+  }
+}

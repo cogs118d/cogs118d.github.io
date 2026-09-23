@@ -19,7 +19,7 @@ seo:
 {{ site.course_vars.quarter }}
 {: .label .label-blue .course-badge }
 
-{{ site.course_vars.building }}
+<a href="{{ site.course_vars.building_map }}" target="_blank" rel="noopener">{{ site.course_vars.building }} &#x2197;</a>
 {: .label .label-blue .course-badge }
 
 {{ site.course_vars.timings }}

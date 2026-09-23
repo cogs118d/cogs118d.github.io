@@ -21,7 +21,7 @@ days:
 
 rhythm:
   - component: Lecture
-    note: 10–10:50am @ COA B27
+    note: 10–10:50am @ <a href="https://maps.app.goo.gl/EBMotpwtm59M6zW38" target="_blank" rel="noopener">COA B27 &#x2197;</a>
     cells:
       Monday:
         text: Lecture

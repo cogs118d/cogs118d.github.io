@@ -46,6 +46,7 @@ footer_content:
 course_vars:
   quarter: 'Fall 2026'
   building: 'COA B27'
+  building_map: 'https://maps.app.goo.gl/EBMotpwtm59M6zW38'
   timings: 'MWF 10:00-10:50am'
 
 # Course calendar settings (_includes/calendar.html, data in _data/calendar.yml)
