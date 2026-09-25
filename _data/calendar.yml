@@ -37,7 +37,7 @@
   month: Sept
   fri:
     date: Sept 25
-    title: 'Course intro<br><a href="https://docs.google.com/document/d/1SedBxPlvlJkJ8NJwnbnwFijgt_QDrioI8De0SNpFYc0/edit?tab=t.0#heading=h.f8q7c2l3wn93" target="_blank" rel="noopener">Webclicker 101 &#x2197;</a>'
+    title: 'Course intro<span class="cal-link"><a href="https://docs.google.com/document/d/1SedBxPlvlJkJ8NJwnbnwFijgt_QDrioI8De0SNpFYc0/edit?tab=t.0#heading=h.f8q7c2l3wn93" target="_blank" rel="noopener">Webclicker 101 &#x2197;</a></span>'
 
 - week: 1
   topic: |

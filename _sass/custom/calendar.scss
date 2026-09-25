@@ -257,3 +257,12 @@ table.cal-table td.cal-topic-cont {
   text-align: center;
   text-transform: uppercase;
 }
+
+// A resource link under a lecture title (slides, guides). A step smaller than
+// the title, on its own line with a little air above it.
+.cal-link {
+  @extend .fs-2;
+
+  display: block;
+  margin-top: 5px;
+}
