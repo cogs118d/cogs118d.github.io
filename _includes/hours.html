@@ -3,14 +3,18 @@
   rhythm, but only the rows tagged `group: hours` in _schedules/weekly.md and
   without the component column. One source of truth - edit weekly.md and both
   this and the Schedule page follow.
+
+  Set `hours_days:` in that file to show only some of the days here; the
+  weekly rhythm always uses the full `days:` list.
 {%- endcomment -%}
 {%- assign sched = site.schedules | first -%}
+{%- assign days = sched.hours_days | default: sched.days -%}
 <div class="rhythm rhythm-compact">
   <div class="rhythm-scroll">
     <table class="rhythm-table">
       <thead>
         <tr>
-          {%- for day in sched.days %}
+          {%- for day in days %}
           <th scope="col">{{ day }}</th>
           {%- endfor %}
         </tr>
@@ -20,7 +24,7 @@
           {%- if row.group == 'hours' %}
         <tr>
           {%- assign skip = 0 -%}
-          {%- for day in sched.days -%}
+          {%- for day in days -%}
             {%- if skip > 0 -%}
               {%- assign skip = skip | minus: 1 -%}
               {%- continue -%}

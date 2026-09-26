@@ -31,6 +31,9 @@ seo:
 
 {% include notices.html %}
 
+<div class="two-col two-col-wide" markdown="1">
+<div markdown="1">
+
 ## Discussion Sections
 
 Both sections meet on **Wednesdays @ <a href="https://maps.app.goo.gl/bF2MJgm9aCoEa3ak7" target="_blank" rel="noopener">CSB 004 &#x2197;</a>** with [Ian](mailto:izane@ucsd.edu).
@@ -38,11 +41,17 @@ Both sections meet on **Wednesdays @ <a href="https://maps.app.goo.gl/bF2MJgm9aC
 * **W, 4-4:50pm**
 * **W, 5-5:50pm**
 
+</div>
+<div markdown="1">
+
 ## Office Hours
 
 {% comment %} Office-hours grid, built from the rows tagged `group: hours` in _schedules/weekly.md {% endcomment %}
 
 {% include hours.html %}
+
+</div>
+</div>
 
 ## Course Calendar
 

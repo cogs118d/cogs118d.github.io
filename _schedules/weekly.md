@@ -12,6 +12,13 @@ subtitle: "Here's how you can expect to spend your time in this course:"
 term: Fall 2026
 instructor: Prof. Lucy Lai
 
+# Days shown in the office-hours grid on the home page. The weekly rhythm
+# below always uses the full `days:` list.
+hours_days:
+  - Monday
+  - Tuesday
+  - Wednesday
+
 days:
   - Monday
   - Tuesday

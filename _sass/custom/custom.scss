@@ -163,6 +163,14 @@ summary {
   }
 }
 
+// Wide variant: a short list beside the office-hours grid, which needs most
+// of the width (the table's own min-width is 560px).
+.two-col-wide {
+  @include mq(md) {
+    grid-template-columns: minmax(210px, 0.8fr) minmax(0, 2.2fr);
+  }
+}
+
 // The course info badges under the title on the home page. Written in
 // index.md as `{: .label .label-blue .course-badge }`. `.label.course-badge`
 // outbids the theme's `.label:not(g)`, which sets the smaller size.
