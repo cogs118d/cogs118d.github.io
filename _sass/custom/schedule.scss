@@ -165,7 +165,13 @@ table.rhythm-table {
 // The office-hours-only grid on the home page (_includes/hours.html). Same
 // card, no component column, so it needs less room and no heading rule.
 .rhythm-compact {
-  padding-top: $sp-3;
+  // Thinner than the full rhythm card: this one has no heading block inside
+  // it, so the wide frame just reads as empty space.
+  padding: $sp-3 $sp-2;
+
+  @include mq(md) {
+    padding: $sp-3 $sp-4;
+  }
 
   table.rhythm-table {
     min-width: 380px;  // three day columns, not five
