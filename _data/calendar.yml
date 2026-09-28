@@ -46,7 +46,7 @@
   mon:
     date: Sept 28
     lec: Lec 1
-    title:     title: '<a href="https://drive.google.com/file/d/1kZsGAXXDpOe21lWHapx8EdOyQpAp_2QT/view?usp=drive_link" target="_blank" rel="noopener">Everything is a GLM: distribution families, linear predictors, link functions &#x2197;</a>'
+    title: '<a href="https://drive.google.com/file/d/1kZsGAXXDpOe21lWHapx8EdOyQpAp_2QT/view?usp=drive_link" target="_blank" rel="noopener">Everything is a GLM: distribution families, linear predictors, link functions &#x2197;</a>'
     due: 
       - name: Pre-course survey
         url: https://docs.google.com/forms/d/e/1FAIpQLSdsDotBSqipI6OeTDi5rGMq9bheRKzrMGyZkXBjgPg9FqNxIg/viewform?usp=dialog
