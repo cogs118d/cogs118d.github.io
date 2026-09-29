@@ -52,6 +52,9 @@
         url: https://docs.google.com/forms/d/e/1FAIpQLSdsDotBSqipI6OeTDi5rGMq9bheRKzrMGyZkXBjgPg9FqNxIg/viewform?usp=dialog
       - name: Syllabus quiz
         url: https://canvas.ucsd.edu/courses/78359/quizzes/269485
+    released:
+      - name: Homework 1
+        url: https://docs.google.com/document/d/1Ehbo5zCll86TvP9bXfsIR1vA4sk9VqkWpsipAmxqGDQ/edit?tab=t.0
   wed:
     date: Sept 30
     lec: Lec 2
