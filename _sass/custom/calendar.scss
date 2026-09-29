@@ -6,6 +6,7 @@ $cal-rule-lt:  #d8e0e7;
 $cal-ink:      #3d4a57;
 $cal-ink-lt:   #7c8894;
 $cal-due:      #a33d3d;
+$cal-released: #2f6b46;
 $cal-event:    #b03a3a;
 
 .cal {
@@ -216,6 +217,21 @@ a.cal-due {
   &:hover {
     background-image: none;
     color: darken($cal-due, 12%);
+  }
+}
+
+// A release rather than a submission: same row treatment as a due item, but
+// green and labelled differently. Declared after a.cal-due so its ::before
+// wins on equal specificity.
+a.cal-due.cal-released {
+  color: $cal-released;
+
+  &::before {
+    content: 'Released: ';
+  }
+
+  &:hover {
+    color: darken($cal-released, 12%);
   }
 }
 

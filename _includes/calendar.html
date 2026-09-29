@@ -74,7 +74,7 @@
               {%- if day.note %}
               <p class="cal-note">{{ day.note | markdownify | remove: '<p>' | remove: '</p>' }}</p>
               {%- endif %}
-              {%- if day.due %}
+              {%- if day.due or day.released %}
               <ul class="cal-dues">
                 {%- for item in day.due -%}
                   {%- comment -%} an entry is either "Quiz 1" or {name:, url:} {%- endcomment -%}
@@ -88,6 +88,19 @@
                   {%- assign dkey = dname | split: ' ' | first -%}
                   {%- assign url = durl | default: site.submit[dname] | default: site.submit[dkey] | default: site.submit.default -%}
                 <li><a class="cal-due" href="{{ url }}">{{ dname }}</a></li>
+                {%- endfor -%}
+                {%- comment -%} `released:` takes the same entries, shown in green as "Released: ..." {%- endcomment -%}
+                {%- for item in day.released -%}
+                  {%- if item.name -%}
+                    {%- assign rname = item.name -%}
+                    {%- assign rurl = item.url | default: '' -%}
+                  {%- else -%}
+                    {%- assign rname = item -%}
+                    {%- assign rurl = '' -%}
+                  {%- endif -%}
+                  {%- assign rkey = rname | split: ' ' | first -%}
+                  {%- assign url = rurl | default: site.submit[rname] | default: site.submit[rkey] | default: site.submit.default -%}
+                <li><a class="cal-due cal-released" href="{{ url }}">{{ rname }}</a></li>
                 {%- endfor -%}
               </ul>
               {%- endif %}
