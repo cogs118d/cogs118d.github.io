@@ -64,6 +64,9 @@
     date: Oct 2
     lec: Lec 3
     title: '<a href="https://drive.google.com/file/d/1knZkqVrqAC_AiKI_MCJVwUW0rzXxJ7K8/view?usp=drive_link" target="_blank" rel="noopener">Classical tests as GLMs (cont''d) &#x2197;</a>'
+    released:
+      - name: Prereq pre-test
+        url: https://cogs118d.github.io/pretest
 
 - week: 2
   month: Oct
@@ -84,6 +87,9 @@
     date: Oct 9
     lec: Lec 6
     title: Mediation and moderation analysis (indirect and interaction effects)
+    due:
+      - name: Prereq pre-test
+        url: https://cogs118d.github.io/pretest
 
 - week: 3
   mon:
