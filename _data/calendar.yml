@@ -59,7 +59,7 @@
     date: Sept 30
     lec: Lec 2
     title: '<a href="https://drive.google.com/file/d/1lh7yzMZmk-a6n54wCrOM5H6Y8f8rZJhF/view?usp=drive_link" target="_blank" rel="noopener">Classical tests as GLMs &#x2197;</a>'
-    section: Section
+    section: '<span class="cal-link"><a href="#" target="_blank" rel="noopener">Section slides &#x2197;</a></span>'
   fri:
     date: Oct 2
     lec: Lec 3
