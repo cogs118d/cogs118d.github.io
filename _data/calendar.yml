@@ -76,17 +76,17 @@
   mon:
     date: Oct 5
     lec: Lec 4
-    title: GLMs for prediction and inference
+    title: Assumptions and violations
     due: [Quiz 1, Homework 1]
   wed:
     date: Oct 7
     lec: Lec 5
-    title: GLM interpretation and model evaluation
+    title: GLM prediction, inference, and model evaluation
     section: Section
   fri:
     date: Oct 9
     lec: Lec 6
-    title: Mediation and moderation analysis (indirect and interaction effects)
+    title: Moderation (interaction effects)
     due:
       - name: Prereq pre-test
         url: https://cogs118d.github.io/pretest
@@ -95,17 +95,17 @@
   mon:
     date: Oct 12
     lec: Lec 7
-    title: "Mixed-effects models: fixed vs. random effects"
+    title: Mediation (indirect effects)
     due: [Quiz 2, Homework 2]
   wed:
     date: Oct 14
     lec: Lec 8
-    title: Building and interpreting mixed-effects models
+    title: "Mixed effects: fixed and random effects"
     section: Section
   fri:
     date: Oct 16
     lec: Lec 9
-    title: Survival analysis
+    title: "Mixed effects: fitting and interpreting"
 
 - week: 4
   mon:
