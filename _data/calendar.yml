@@ -67,6 +67,8 @@
     released:
       - name: Prereq pre-test
         url: https://cogs118d.github.io/pretest
+      - name: Feedback Survey
+        url: https://forms.gle/QcT7oixKikJFeSw29
 
 - week: 2
   month: Oct
