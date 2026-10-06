@@ -78,6 +78,9 @@
     lec: Lec 4
     title: '<a href="https://drive.google.com/file/d/14RsH3xe51bMmjqBEsirgvpPgY9sBnc8i/view?usp=drive_link" target="_blank" rel="noopener">GLM assumptions and violations &#x2197;</a>'
     due: [Quiz 1, Homework 1]
+    released:
+      - name: Homework 2
+        url: https://docs.google.com/document/d/1vmgBWwokI6AwfeMg4uPZw-ixSLBykHMQ_UF_Qc4zkew/edit?usp=sharing
   wed:
     date: Oct 7
     lec: Lec 5
