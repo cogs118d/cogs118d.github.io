@@ -102,6 +102,9 @@
     lec: Lec 7
     title: '<a href="https://drive.google.com/file/d/1s_BojAbks9srfLOm1yScbtOZOvkp4H7t/view?usp=drive_link" target="_blank" rel="noopener">Mediation (indirect effects) &#x2197;</a>'
     due: [Quiz 2, Homework 2]
+    released:
+      - name: Homework 3
+        url: https://docs.google.com/document/d/1SRzGSaX_cdw78109qb487nN5F8NqNEtK5TVvNC3JWKI/edit?usp=sharing
   wed:
     date: Oct 14
     lec: Lec 8
