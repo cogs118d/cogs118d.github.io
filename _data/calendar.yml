@@ -114,6 +114,11 @@
     date: Oct 16
     lec: Lec 9
     title: '<a href="https://drive.google.com/file/d/1GJKqDJi1jph9m78hyiuOE4LMEW24Ot2e/view?usp=drive_link" target="_blank" rel="noopener">Mixed effects: fitting and interpreting &#x2197;</a>'
+    released:
+      - name: Exam 1 Study Sheet + Practice Exam
+        url: https://docs.google.com/document/d/103msVW6e4HYzkMR19UFwWosSaSuMwH9vt_EJEXMHGY4/edit?usp=sharing
+      - name: Webclickers + Practice Problems
+        url: https://drive.google.com/file/d/1kOJtiP7yocHe7q5LSro9flpf2FNXo5_R/view?usp=sharing
 
 - week: 4
   mon:
