@@ -127,6 +127,9 @@
     title: "Guest lecture: Aubrey Lau"
     guest: Senior UX Researcher, Zillow
     due: [Quiz 3, Homework 3]
+    released:
+      - name: Mini-Project 1 Guidelines
+        url: https://docs.google.com/document/d/1sdw6OOCn3_wH639rbqXazpp86cXHtufdNqbvegsX9eI/edit?tab=t.gxmvwphy06dl
   wed:
     date: Oct 21
     event: EXAM 1
@@ -145,7 +148,9 @@
     date: Oct 26
     lec: Lec 12
     title: "**Reinforcement learning** as a cognitive model of decision making"
-    due: [Mini-Project 1 (slides & video)]
+    due:
+      - name: Mini-Project 1 (slides & video)
+        url: https://canvas.ucsd.edu/courses/78359/assignments/1200120
   wed:
     date: Oct 28
     lec: Lec 13
