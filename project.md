@@ -7,7 +7,7 @@ description: Course project guidelines
 
 ## [COGS 118D - Course Projects](https://docs.google.com/document/d/1sdw6OOCn3_wH639rbqXazpp86cXHtufdNqbvegsX9eI/edit?usp=sharing)
 
-**[Mini-Project 1]**(https://docs.google.com/document/d/1sdw6OOCn3_wH639rbqXazpp86cXHtufdNqbvegsX9eI/edit?tab=t.gxmvwphy06dl) will cover the analyses and topics in **Homeworks 1-3:**
+[**Mini-Project 1**](https://docs.google.com/document/d/1sdw6OOCn3_wH639rbqXazpp86cXHtufdNqbvegsX9eI/edit?tab=t.gxmvwphy06dl) will cover the analyses and topics in **Homeworks 1-3:**
 * Common statistical tests as GLMs
 * Prediction and inference with GLMs
 * Moderation
