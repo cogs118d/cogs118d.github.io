@@ -137,11 +137,11 @@
   fri:
     date: Oct 23
     lec: Lec 11
-    title: '<a href="https://drive.google.com/file/d/1b02iAg7JpxQSNJ9Dc10W8_05J9RQ3rch/view?usp=drive_link" target="_blank" rel="noopener">Generative vs. discriminative models; normative models of cognition &#x2197;</a>'
+    title: '<a href="https://drive.google.com/file/d/1-hFQjoxbxr0fsdgMafN0bxKtf7o5goHR/view?usp=drive_link" target="_blank" rel="noopener">Generative vs. discriminative models; normative models of cognition &#x2197;</a>'
     released:
-      - name: 'Paper: 10 Rules for Modeling Behavioral Data'
+      - name: '<b>Paper:</b> 10 Rules for Modeling Behavioral Data'
         url: https://elifesciences.org/articles/49547#s1
-      - name: 'Video: Nancy Kanwisher (MIT) on Marr''s levels'
+      - name: '<b>Video:</b> Nancy Kanwisher (MIT) on Marr''s levels'
         url: https://www.youtube.com/watch?v=Di_3pGAveGs
     note: Last day to drop without a "W"
 
