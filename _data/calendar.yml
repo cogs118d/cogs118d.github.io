@@ -152,7 +152,7 @@
   mon:
     date: Oct 26
     lec: Lec 12
-    title: "**Reinforcement learning** as a cognitive model of decision making"
+    title: '<a href="https://drive.google.com/file/d/1JtNW_mc6EZjy7i-kzWK48LjWiCRz6XC7/view?usp=drive_link" target="_blank" rel="noopener"><b>Reinforcement learning</b> as a cognitive model of decision making &#x2197;</a>'
     due:
       - name: Mini-Project 1 (slides & video)
         url: https://canvas.ucsd.edu/courses/78359/assignments/1200120
