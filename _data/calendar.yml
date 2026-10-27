@@ -156,6 +156,9 @@
     due:
       - name: Mini-Project 1 (slides & video)
         url: https://canvas.ucsd.edu/courses/78359/assignments/1200120
+    released:
+      - name: Homework 4
+        url: https://docs.google.com/document/d/1zPTErYO2ARKbzUxKpSOsOgzwCRhHx73YzyYYSfL3T_I/edit?usp=sharing
   wed:
     date: Oct 28
     lec: Lec 13
