@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Two-armed bandit</title>
+
+    <!-- Two-armed bandit task by Dan Bennett (Niv Lab), https://github.com/nivlab/jspsych-demos (CC BY-NC-SA 4.0).
+         Adapted for COGS 118D at UC San Diego; see README.md for the list of changes. -->
+
+    <!-- read in js libraries -->
+    <script src="https://unpkg.com/jspsych@8.2.3"></script>
+
+    <!-- settings and data export (added for COGS 118D) -->
+    <script src="./js/config.js"></script>
+    <script src="./js/data-export.js"></script>
+
+    <!-- Initialize jsPsych -->
+    <script src="./js/init-jspsych.js"></script>
+
+    <!-- read in jsPsych plugins -->
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+    <script src="./js/plugin-bandit.js"></script>
+
+    <!-- read in static variables for running experiment -->
+    <script src="./js/bandit-stimuli.js"></script>
+    <script src="./js/bandit-queues.js"></script>
+    <script src="./js/bandit-runsheet.js"></script>
+
+    <!-- read in stylesheets -->
+    <link href="https://unpkg.com/jspsych@8.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <style> .jspsych-content { max-width: 1000px; } </style>
+  </head>
+  <body></body>
+  <script>
+
+  //------------------------------------
+  // Messages and landing pages
+  //------------------------------------
+
+  var n_trials = CONFIG.free_trials_per_block + CONFIG.forced_trials_per_block;
+
+  var preload = {
+    type: jsPsychPreload,
+    images: face_images.concat(place_images, feedback_images)
+  };
+
+  var welcome = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus:
+      '<div style="max-width:760px;text-align:left;font-size:20px;line-height:1.5">' +
+      '<h2>The picture game</h2>' +
+      '<p>On each trial you will see two pictures. Choose one with the <b>left</b> (&larr;) or <b>right</b> (&rarr;) arrow key.</p>' +
+      '<p>After each choice you will see whether that picture gave you a <span style="color:#00A82B"><b>reward</b></span> or <span style="color:#D00"><b>no reward</b></span>.</p>' +
+      '<p>Each picture gives rewards with its own probability, and one picture is better than the other. ' +
+      'It doesn’t matter which side a picture appears on. Try to earn as many rewards as you can.</p>' +
+      '<p>There are ' + CONFIG.n_blocks + ' rounds of ' + n_trials + ' trials, with new pictures in each round. It takes about ' +
+      Math.round(CONFIG.n_blocks * n_trials * 3 / 60) + ' minutes.</p>' +
+      '<p style="color:#555;font-size:16px">Your responses are anonymous: you’ll get a random ID at the end, along with a copy of your data.</p>' +
+      '<p><b>Press any key to begin.</b></p></div>'
+  };
+
+  var block_end = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size:22px">End of round. Take a short break.</p><p style="font-size:22px">The next round uses <b>new pictures</b>. Press any key when you are ready.</p>'
+  };
+
+  var expt_end = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size:22px">That’s the end of the game. Press any key to see your results and download your data.</p>'
+  };
+
+  //------------------------------------
+  // Functions to turn fullscreen on/off
+  //------------------------------------
+
+  var fullscreen_on = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true,
+    message: '<p>The experiment will switch to full screen mode when you press the button below.</p><p>Where possible, please stay in full screen mode for the entire experiment.</p>'
+  };
+
+  var fullscreen_off = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: false
+  };
+
+  //------------------------------------
+  // Define and randomise experimental variables
+  //------------------------------------
+
+  // payout queues and the forced-choice queue, in a global variable used by the plugin
+  var queues = {rfq: makeQueues(), rpq: makeQueues(), null_trial_queue: []};
+
+  // randomise which pictures are used. Blocks alternate faces and places; each block gets its own pair.
+  var face_order = jsPsych.randomization.shuffle([0, 1, 2, 3]);
+  var place_order = jsPsych.randomization.shuffle([0, 1, 2, 3]);
+
+  // block and trial counters (used by the plugin for the progress text)
+  var counter = {block: 1, trial: 1, n_blocks: CONFIG.n_blocks};
+
+  //------------------------------------
+  // Define experimental blocks
+  //------------------------------------
+
+  function makeBlock(b) {   // b = 1, 2, ... (at most 4: there are 4 face and 4 place pictures)
+    var is_face = (b % 2 === 1);
+    var pair = Math.floor((b - 1) / 2);   // 0 for blocks 1-2, 1 for blocks 3-4
+    var order = is_face ? face_order : place_order;
+    var allocation = [order[2 * pair], order[2 * pair + 1]];   // picture for option 0 (worse) and option 1 (better)
+    var stimuli = is_face ? makeRunsheet("face") : makeRunsheet("place");
+    return {
+      timeline_variables: stimuli,
+      randomize_order: true,
+      on_timeline_start: function () {
+        // fresh payout queues and counters at the start of every block
+        queues.rfq = makeQueues(); queues.rpq = makeQueues(); queues.null_trial_queue = [];
+        counter.block = b; counter.trial = 1;
+      },
+      timeline: [{
+        type: jsPsychBanditTrial,
+        face_stimuli: face_images,
+        place_stimuli: place_images,
+        image_allocation: allocation,
+        feedback_images: feedback_images,
+        n_trials: stimuli.length,
+        choice_type: jsPsych.timelineVariable('choice_type'),
+        left_image_type: jsPsych.timelineVariable('left_image_type'),
+        left_image_number: jsPsych.timelineVariable('left_image_number'),
+        right_image_type: jsPsych.timelineVariable('right_image_type'),
+        right_image_number: jsPsych.timelineVariable('right_image_number'),
+        choice_display_duration: CONFIG.choice_display_duration,
+        feedback_display_duration: CONFIG.feedback_display_duration,
+        iti_duration: CONFIG.iti_duration,
+        data: {task: "bandit"}
+      }]
+    };
+  }
+
+  //------------------------------------
+  // Put it all in a timeline
+  //------------------------------------
+
+  var timeline = [preload, welcome, fullscreen_on];
+  for (var b = 1; b <= CONFIG.n_blocks; b++) {
+    timeline.push(makeBlock(b));
+    timeline.push(b < CONFIG.n_blocks ? block_end : expt_end);
+  }
+  timeline.push(fullscreen_off);
+
+  //------------------------------------
+  // Set up and run the experiment
+  //------------------------------------
+
+  jsPsych.run(timeline);
+
+  </script>
+</html>
