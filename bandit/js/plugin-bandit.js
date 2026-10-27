@@ -356,7 +356,7 @@ var jsPsychBanditTrial = (function (jspsych) {
         ctx.font = "28px Arial";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        var info_text = "Block " + counter.block + " of " + counter.n_blocks + ", Trial " + counter.trial + " of " + trial.n_trials;
+        var info_text = "Round " + counter.block + " of " + counter.n_blocks + "  \u00b7  Spin " + counter.trial + " of " + trial.n_trials;
         ctx.fillText(info_text, trial.canvas_dimensions[0]/2, 3* ctx.measureText('M').width/2);
 
 

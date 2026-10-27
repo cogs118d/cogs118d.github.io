@@ -1,6 +1,6 @@
 // Trial lists (modified for COGS 118D): built from CONFIG instead of a fixed list of 10 trials.
 // Free-choice trials are balanced so each option appears on the left half the time.
-// Forced-choice trials show one picture, on the left or right.
+// Forced-choice trials show one machine, on the left or right.
 
 function makeRunsheet(image_type) {
   var trials = [];

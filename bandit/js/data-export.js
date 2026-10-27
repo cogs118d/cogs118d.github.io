@@ -27,7 +27,7 @@ function tidyRows(jsPsych, participant_id, session_start) {
       block: d.block,
       trial: d.trial_in_block,
       choice_type: d.choice_type,
-      image_set: d.left_image_type || d.right_image_type,
+      image_set: (d.left_image_type || d.right_image_type) === "face" ? "machines_A" : "machines_B",   // which set of 4 slot machines
       left_option: left,
       right_option: right,
       choice_side: d.choice || "",
@@ -81,7 +81,7 @@ function showEndScreen(jsPsych, participant_id, session_start) {
   el.innerHTML =
     '<div style="max-width:700px;margin:40px auto;text-align:left;font-size:20px;line-height:1.5">' +
     '<h2>All done, thank you!</h2>' +
-    '<p>You earned <b>' + n_reward + '</b> rewards and chose the better picture on <b>' + p_better + '%</b> of your choices.</p>' +
+    '<p>You won <b>' + n_reward + '</b> coins and played the better machine on <b>' + p_better + '%</b> of your spins.</p>' +
     '<p>Your anonymous ID is <b style="font-size:26px;letter-spacing:2px">' + participant_id + '</b>. ' +
     'Write it down: it is the only way to find your rows in the class data.</p>' +
     '<p><button id="dl" class="jspsych-btn" style="font-size:20px">Download my data (CSV)</button></p>' +

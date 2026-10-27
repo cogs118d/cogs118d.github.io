@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Two-armed bandit</title>
+    <title>Vegas slots</title>
 
     <!-- Two-armed bandit task by Dan Bennett (Niv Lab), https://github.com/nivlab/jspsych-demos (CC BY-NC-SA 4.0).
          Adapted for COGS 118D at UC San Diego; see README.md for the list of changes. -->
@@ -50,25 +50,27 @@
     type: jsPsychHtmlKeyboardResponse,
     stimulus:
       '<div style="max-width:760px;text-align:left;font-size:20px;line-height:1.5">' +
-      '<h2>The picture game</h2>' +
-      '<p>On each trial you will see two pictures. Choose one with the <b>left</b> (&larr;) or <b>right</b> (&rarr;) arrow key.</p>' +
-      '<p>After each choice you will see whether that picture gave you a <span style="color:#00A82B"><b>reward</b></span> or <span style="color:#D00"><b>no reward</b></span>.</p>' +
-      '<p>Each picture gives rewards with its own probability, and one picture is better than the other. ' +
-      'It doesn’t matter which side a picture appears on. Try to earn as many rewards as you can.</p>' +
-      '<p>There are ' + CONFIG.n_blocks + ' rounds of ' + n_trials + ' trials, with new pictures in each round. It takes about ' +
-      Math.round(CONFIG.n_blocks * n_trials * 3 / 60) + ' minutes.</p>' +
+      '<h2>&#127920; Vegas slots</h2>' +
+      '<p>You’re in Las Vegas with a bucket of tokens. On each spin you’ll see two slot machines. ' +
+      'Play one with the <b>left</b> (&larr;) or <b>right</b> (&rarr;) arrow key.</p>' +
+      '<p>After each spin you’ll see whether the machine <span style="color:#00A82B"><b>paid out a coin</b></span> ' +
+      'or <span style="color:#D00"><b>paid nothing</b></span>.</p>' +
+      '<p>Each machine pays out with its own chance, and one machine pays out more often than the other. ' +
+      'It doesn’t matter which side a machine is on. Try to win as many coins as you can.</p>' +
+      '<p>There are ' + CONFIG.n_blocks + ' rounds of ' + n_trials + ' spins. In each round you move to a new casino with ' +
+      '<b>two new machines</b>. It takes about ' + Math.max(1, Math.round(CONFIG.n_blocks * n_trials * 3 / 60)) + ' minutes.</p>' +
       '<p style="color:#555;font-size:16px">Your responses are anonymous: you’ll get a random ID at the end, along with a copy of your data.</p>' +
       '<p><b>Press any key to begin.</b></p></div>'
   };
 
   var block_end = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: '<p style="font-size:22px">End of round. Take a short break.</p><p style="font-size:22px">The next round uses <b>new pictures</b>. Press any key when you are ready.</p>'
+    stimulus: '<p style="font-size:22px">End of round. Take a short break.</p><p style="font-size:22px">Next, you move to a new casino with <b>two new slot machines</b>. Press any key when you are ready.</p>'
   };
 
   var expt_end = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: '<p style="font-size:22px">That’s the end of the game. Press any key to see your results and download your data.</p>'
+    stimulus: '<p style="font-size:22px">That’s the end of your trip to Vegas. Press any key to see your winnings and download your data.</p>'
   };
 
   //------------------------------------
@@ -93,7 +95,7 @@
   // payout queues and the forced-choice queue, in a global variable used by the plugin
   var queues = {rfq: makeQueues(), rpq: makeQueues(), null_trial_queue: []};
 
-  // randomise which pictures are used. Blocks alternate faces and places; each block gets its own pair.
+  // randomise which slot machines are used. Rounds alternate between the two sets of four machines; each round gets its own pair.
   var face_order = jsPsych.randomization.shuffle([0, 1, 2, 3]);
   var place_order = jsPsych.randomization.shuffle([0, 1, 2, 3]);
 
@@ -104,11 +106,11 @@
   // Define experimental blocks
   //------------------------------------
 
-  function makeBlock(b) {   // b = 1, 2, ... (at most 4: there are 4 face and 4 place pictures)
+  function makeBlock(b) {   // b = 1, 2, ... (at most 4: there are 8 machines, in two sets of 4)
     var is_face = (b % 2 === 1);
     var pair = Math.floor((b - 1) / 2);   // 0 for blocks 1-2, 1 for blocks 3-4
     var order = is_face ? face_order : place_order;
-    var allocation = [order[2 * pair], order[2 * pair + 1]];   // picture for option 0 (worse) and option 1 (better)
+    var allocation = [order[2 * pair], order[2 * pair + 1]];   // machine for option 0 (worse) and option 1 (better)
     var stimuli = is_face ? makeRunsheet("face") : makeRunsheet("place");
     return {
       timeline_variables: stimuli,
@@ -133,6 +135,7 @@
         choice_display_duration: CONFIG.choice_display_duration,
         feedback_display_duration: CONFIG.feedback_display_duration,
         iti_duration: CONFIG.iti_duration,
+        background_colour: '#14213d',   // casino-night navy (the original was grey, #878787)
         data: {task: "bandit"}
       }]
     };

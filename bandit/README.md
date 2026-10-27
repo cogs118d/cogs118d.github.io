@@ -1,6 +1,6 @@
 # Two-armed bandit task for COGS 118D
 
-Students play a two-armed bandit ("the picture game") in their browser, download their own data as a CSV, and fit Rescorla–Wagner and other models to it in Colab. Every student's anonymous data are also sent to the instructor's Google Sheet.
+Students play a two-armed bandit ("Vegas slots": choose between two slot machines) in their browser, download their own data as a CSV, and fit Rescorla–Wagner and other models to it in Colab. Every student's anonymous data are also sent to the instructor's Google Sheet.
 
 ## What's in this folder
 
@@ -55,10 +55,10 @@ The notebook asks students to upload their CSV. The last section ("instructor") 
 | Setting | Default | Notes |
 |---|---|---|
 | `sheet_url` | `""` | your Apps Script `/exec` URL; leave empty to turn off the upload |
-| `n_blocks` | 2 | up to 4 (there are 4 face and 4 place pictures; blocks alternate faces and places) |
-| `free_trials_per_block` | 50 | about 100 free choices in total gives reasonable parameter recovery (Lecture 14) |
+| `n_blocks` | 2 | up to 4 (there are 8 slot machines in two sets of 4; rounds alternate between the sets) |
+| `free_trials_per_block` | 30 | 2 rounds of 30 spins at 70/30 recovers α about as well as 2 rounds of 50 at 80/20 (see below) |
 | `forced_trials_per_block` | 0 | the original task used 4 forced trials per 10; the notebook handles them |
-| `reward_probs` | `[0.2, 0.8]` | worse and better option |
+| `reward_probs` | `[0.3, 0.7]` | worse and better machine |
 | `choice_display_duration`, `feedback_display_duration`, `iti_duration` | 500, 1000, 500 ms | the original used 1500, 2000, 1500 ms |
 
 ## The data
@@ -70,11 +70,11 @@ One row per trial, in the downloaded CSV and in the sheet (the sheet adds a `rec
 | `participant_id` | random 6-character ID shown at the end; no names or emails are collected |
 | `session_start` | when the page was opened (UTC) |
 | `block`, `trial` | round (1, 2, …) and trial within the round |
-| `choice_type` | `free` (two pictures) or `forced` (one picture) |
-| `image_set` | `face` or `place` |
-| `left_option`, `right_option` | option shown on each side: 1 = better (80%), 0 = worse (20%); blank if no picture |
+| `choice_type` | `free` (two machines) or `forced` (one machine) |
+| `image_set` | `machines_A` or `machines_B` (which set of four slot machines the round used) |
+| `left_option`, `right_option` | option shown on each side: 1 = better (70%), 0 = worse (30%); blank if no machine |
 | `choice_side` | `left` or `right` |
-| `chosen_option` | 1 = chose the better picture, 0 = the worse one |
+| `chosen_option` | 1 = chose the better machine, 0 = the worse one |
 | `chose_better` | same as `chosen_option` (kept for readability) |
 | `reward` | 1 = rewarded, 0 = not |
 | `reward_prob_chosen` | reward probability of the chosen option |
@@ -101,3 +101,17 @@ This adapted version, including the new files (`config.js`, `data-export.js`, `a
 3. The plugin records `choice_type`, `block` and `trial_in_block` with each trial.
 4. New instructions, a preload step, block breaks, anonymous IDs, a tidy CSV download, and an optional upload to a Google Sheet.
 5. Blocks get their own picture pairs and fresh payout queues; up to 4 blocks are supported.
+6. The face and place pictures are replaced by eight original slot-machine drawings (`img/s1.png`–`img/s8.png`), with a Las Vegas cover story, a navy background, and "Round / Spin" progress text. The original pictures are still in `img/` but no longer used.
+
+## How many spins? (simulation, Oct 2026)
+
+We simulated Rescorla–Wagner players (α uniform 0.05–0.95, β uniform 1–10), fit each one alone (maximum likelihood, 4 starts), and compared the fitted with the true parameters (400 simulated players per design):
+
+| Design | Spins | r (true vs. fitted α) | α off by more than 0.25 | r for β |
+|---|---|---|---|---|
+| 2 rounds × 50, 80/20 | 100 | 0.83 | 10% | 0.60 |
+| 2 rounds × 40, 80/20 | 80 | 0.80 | 14% | 0.50 |
+| 2 rounds × 30, 80/20 | 60 | 0.74 | 18% | 0.42 |
+| **2 rounds × 30, 70/30** | **60** | **0.81** | **13%** | **0.42** |
+
+With 80/20 machines, people find the better one within a few spins and then mostly repeat it, so later spins say little about the learning rate. With 70/30, wins and losses stay mixed for longer, so 60 spins at 70/30 recover α about as well as 80–100 spins at 80/20. β is recovered less well with fewer spins in every design. Model recovery (which of the five models generated the data, by BIC) was similar for 2 × 30 at 70/30 and 2 × 50 at 80/20 (RW 90% vs. 90%; WSLS 100% vs. 100%; random 82% vs. 78%; choice kernel 70% vs. 78%), and RW + choice kernel is rarely chosen by BIC at either length.
