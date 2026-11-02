@@ -174,23 +174,25 @@
   mon:
     date: Nov 2
     lec: Lec 15
-    title: Model comparison & posterior predictive checks
+    title: Model comparison, recovery, and validation, examples
     due: [Quiz 4, Homework 4]
   wed:
     date: Nov 4
     lec: Lec 16
-    title: Latent variables and individual differences
+    title: Dopamine as the TD-learning error
     section: Section
   fri:
     date: Nov 6
     lec: Lec 17
-    title: "**Bayesian inference** as a model of perception"
+    title: Model-based and model-free RL
     note: Last day to drop with a "W"
 
 - week: 7
   mon:
     date: Nov 9
-    title: Bayesian models of perception (cont'd)
+    lec: Lec 18
+    title: TBD
+    due: [Quiz 5, Homework 5, Project groups survey]
     due: [Quiz 5, Homework 5, Project groups survey]
   wed:
     date: Nov 11
