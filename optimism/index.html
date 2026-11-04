@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Symbol cards</title>
+
+    <!-- COGS 118D (UC San Diego): a browser version of the task in Lefebvre et al. (2017),
+         "Behavioural and neural characterization of optimistic reinforcement learning". See README.md. -->
+
+    <script src="https://unpkg.com/jspsych@8.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+    <link href="https://unpkg.com/jspsych@8.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data-export.js"></script>
+    <script src="./js/plugin-cards.js"></script>
+
+    <style>
+      html, body { background: #2b2d42; color: #f1f1f1; }
+      .jspsych-display-element { font-family: "Helvetica Neue", Arial, sans-serif; }
+      .jspsych-content { max-width: 900px; }
+      .jspsych-btn { font-size: 18px; padding: 8px 20px; }
+      .instr { max-width: 720px; text-align: left; font-size: 19px; line-height: 1.5; margin: 0 auto; }
+      .instr h2 { text-align: center; }
+      .stage { min-height: 520px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .progress { color: #aab; font-size: 16px; margin-bottom: 18px; }
+      .cards { display: flex; gap: 90px; justify-content: center; }
+      .slot { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: opacity .2s; }
+      .card { width: 170px; display: block; border-radius: 20px; }
+      .slot.chosen .card { box-shadow: 0 0 0 7px #ffb703; }
+      .slot.faded { opacity: .35; }
+      .outcome { height: 60px; margin-top: 14px; font-size: 34px; font-weight: bold; visibility: hidden; }
+      .outcome.show { visibility: visible; }
+      .outcome.good { color: #4cd964; } .outcome.zero { color: #c9c9d1; } .outcome.bad { color: #ff5c5c; }
+      .hint { color: #aab; font-size: 16px; margin-top: 4px; }
+      .fixation { font-size: 60px; color: #ddd; }
+      .endscreen { max-width: 820px; margin: 30px auto; text-align: left; font-size: 18px; line-height: 1.45; }
+      .reveal { display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; margin: 10px 0 20px; }
+      .reveal-pair { display: flex; gap: 8px; padding: 8px; border: 1px solid #555a75; border-radius: 10px; }
+      .reveal-pair img { width: 64px; border-radius: 8px; display: block; margin: 0 auto 4px; }
+      .reveal-pair div { text-align: center; font-size: 13px; }
+      table.summary { border-collapse: collapse; margin: 8px 0 14px; }
+      table.summary td, table.summary th { border: 1px solid #555a75; padding: 6px 10px; vertical-align: top; }
+      table.summary td:not(:first-child), table.summary th { text-align: center; white-space: nowrap; }
+      .note { color: #c9c9d1; font-size: 16px; }
+      .credit { color: #8d8fa3; font-size: 13px; margin-top: 30px; }
+      .credit a { color: #8d8fa3; }
+      .demo-out { font-weight: bold; }
+    </style>
+  </head>
+  <body></body>
+  <script>
+
+  //------------------------------------
+  // Participant and data
+  //------------------------------------
+  var PARTICIPANT_ID = makeParticipantId();
+  var SESSION_START = new Date().toISOString();
+  var jsPsych = initJsPsych({
+    on_finish: function () { showEndScreen(jsPsych, PARTICIPANT_ID, SESSION_START); }
+  });
+
+  //------------------------------------
+  // Symbols, pairs and outcomes
+  //------------------------------------
+  // 8 of the 24 symbols, drawn at random for each player; pair k uses symbols 2k and 2k+1
+  var ALL_SYMBOLS = [];
+  for (var i = 1; i <= 24; i++) { ALL_SYMBOLS.push('./img/symbols/' + i + '.png'); }
+  var chosen = jsPsych.randomization.shuffle(ALL_SYMBOLS).slice(0, 2 * CONFIG.pairs.length);
+  var PAIRS = CONFIG.pairs.map(function (p, k) {
+    return {p: p, label: Math.round(100 * p[0]) + '/' + Math.round(100 * p[1]), images: [chosen[2 * k], chosen[2 * k + 1]]};
+  });
+
+  // Outcome queues: each symbol's outcomes come from shuffled runs of 4 with exactly 1 (25%) or 3 (75%)
+  // good outcomes, so every player experiences the stated chances, in a different order.
+  function makeQueue(p, length) {
+    var q = [];
+    while (q.length < length) {
+      var run = [];
+      for (var j = 0; j < 4; j++) { run.push(j < Math.round(4 * p) ? 1 : 0); }
+      q = q.concat(jsPsych.randomization.shuffle(run));
+    }
+    return q;
+  }
+  var QUEUES = PAIRS.map(function (pr) {
+    return pr.p.map(function (p) { return makeQueue(p, CONFIG.trials_per_pair); });
+  });
+  function drawOutcome(pair_index, option) {   // option = 1 or 2
+    var q = QUEUES[pair_index][option - 1];
+    var good = q.length ? q.shift() : Number(Math.random() < PAIRS[pair_index].p[option - 1]);
+    return good ? CONFIG.outcome_good : CONFIG.outcome_bad;
+  }
+
+  //------------------------------------
+  // Trial list: each pair shown trials_per_pair times (half with option 1 on the left), interleaved
+  //------------------------------------
+  var specs = [];
+  PAIRS.forEach(function (pr, k) {
+    for (var t = 0; t < CONFIG.trials_per_pair; t++) {
+      specs.push({pair_index: k, pair: pr.label, images: pr.images, option_left: (t % 2) + 1});
+    }
+  });
+  specs = jsPsych.randomization.shuffle(specs);
+  specs.forEach(function (s, t) { s.trial = t + 1; s.n_trials = specs.length; });
+
+  //------------------------------------
+  // Instructions
+  //------------------------------------
+  var bad_text = CONFIG.outcome_bad < 0 ? '<span class="demo-out" style="color:#ff5c5c">lose €0.50</span>'
+                                          : '<span class="demo-out" style="color:#c9c9d1">get nothing (€0.00)</span>';
+  var minutes = Math.max(1, Math.round(specs.length * 3 / 60));
+
+  var instructions = {
+    type: jsPsychInstructions,
+    show_clickable_nav: true,
+    key_forward: 'ArrowRight', key_backward: 'ArrowLeft',
+    pages: [
+      '<div class="instr"><h2>Symbol cards</h2>' +
+      '<p>On each trial you will see <b>two cards</b>, each with an abstract symbol. Choose one with the ' +
+      '<b>left</b> (&larr;) or <b>right</b> (&rarr;) arrow key, or click it.</p>' +
+      '<p>After you choose, you will see what that card gave you: you either ' +
+      '<span class="demo-out" style="color:#4cd964">win €0.50</span> or ' + bad_text + '.</p>' +
+      '<p>Use the arrow keys or the buttons below to move through these pages.</p></div>',
+
+      '<div class="instr"><h2>How the symbols work</h2>' +
+      '<p>Each symbol has its own <b>chance</b> of winning, which never changes during the game. ' +
+      'No symbol always wins or always loses. Some symbols win more often than others, and you can only find out by trying them.</p>' +
+      '<p>There are <b>four pairs</b> of symbols. The two symbols in a pair always appear together, ' +
+      'but the pairs are mixed together, and each symbol can be on the left or the right.</p>' +
+      '<p>Try to win as much money as you can. (It is not real money!)</p></div>',
+
+      '<div class="instr"><h2>Ready?</h2>' +
+      '<p>There are <b>' + specs.length + ' trials</b>, about ' + minutes + ' minutes. Take your time on each choice: there is no time limit.</p>' +
+      '<p>Your choices are not sent or saved anywhere. At the end you will see a short summary, ' +
+      'and you can download your own data if you like.</p>' +
+      '<p>Click <b>Next</b> to switch to full screen and start.</p></div>'
+    ]
+  };
+
+  var preload = {type: jsPsychPreload, images: ALL_SYMBOLS};
+  var fullscreen_on = {type: jsPsychFullscreen, fullscreen_mode: true, message: '<p style="font-size:20px">The game will switch to full screen.</p>', button_label: 'Start',
+                       delay_after: 300};
+  var fullscreen_off = {type: jsPsychFullscreen, fullscreen_mode: false};
+
+  var trials = {
+    timeline: [{type: jsPsychCardTrial, spec: jsPsych.timelineVariable('spec')}],
+    timeline_variables: specs.map(function (s) { return {spec: s}; })
+  };
+
+  jsPsych.run([preload, instructions, fullscreen_on, trials, fullscreen_off]);
+  </script>
+</html>

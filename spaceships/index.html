@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Space treasure</title>
+
+    <!-- COGS 118D (UC San Diego): a browser version of Experiment 1 in Kool, Gershman & Cushman (2017),
+         "Cost-benefit arbitration between multiple reinforcement-learning systems". See README.md. -->
+
+    <script src="https://unpkg.com/jspsych@8.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <link href="https://unpkg.com/jspsych@8.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+    <script src="./js/config.js"></script>
+    <script src="./js/art.js"></script>
+    <script src="./js/data-export.js"></script>
+    <script src="./js/plugin-spaceships.js"></script>
+
+    <style>
+      html, body { background: #03071e; color: #f1f1f1; }
+      .jspsych-display-element { font-family: "Helvetica Neue", Arial, sans-serif; }
+      .jspsych-content { max-width: 960px; width: 100%; }
+      .jspsych-btn { font-size: 18px; padding: 8px 20px; }
+      .instr { max-width: 760px; text-align: left; font-size: 19px; line-height: 1.5; margin: 0 auto; }
+      .instr h2 { text-align: center; }
+      .instr svg { width: 100%; display: block; margin: 6px auto; border-radius: 10px; }
+      .stage { display: flex; flex-direction: column; align-items: center; }
+      .hud { width: 100%; max-width: 900px; display: flex; justify-content: space-between; font-size: 17px; color: #cfd8f0; margin-bottom: 6px; min-height: 22px; }
+      #scene { width: 100%; max-width: 900px; border-radius: 12px; }
+      .blank { width: 100%; max-width: 900px; aspect-ratio: 900 / 520; }
+      .ship, .alien { cursor: pointer; transition: transform .5s ease-in, opacity .25s; }
+      .ship.chosen, .alien.chosen { filter: drop-shadow(0 0 14px #fff275) drop-shadow(0 0 4px #fff275); }
+      .ship.faded { opacity: .25; }
+      .ship.flying { transform: translateY(-460px); }
+      .msg { fill: #fff; font-size: 26px; text-anchor: middle; font-family: "Helvetica Neue", Arial, sans-serif; }
+      .msg.big { font-size: 54px; font-weight: bold; fill: #ffd166; }
+      .hint { color: #cfd8f0; font-size: 16px; margin-top: 8px; min-height: 22px; }
+      .endscreen { max-width: 820px; margin: 30px auto; text-align: left; font-size: 18px; line-height: 1.45; }
+      .plot { width: 100%; max-width: 640px; display: block; margin: 6px auto; background: #0b1636; border-radius: 10px; }
+      .plot text { fill: #cfd8f0; font-size: 13px; }
+      table.summary { border-collapse: collapse; margin: 8px 0 14px; font-size: 16px; }
+      table.summary td, table.summary th { border: 1px solid #3a4a7a; padding: 6px 10px; text-align: center; }
+      table.summary td:first-child, table.summary th:first-child { text-align: left; }
+      .note { color: #cfd8f0; font-size: 16px; }
+      .credit { color: #8a93b8; font-size: 13px; margin-top: 30px; }
+    </style>
+  </head>
+  <body></body>
+  <script>
+
+  var PARTICIPANT_ID = makeParticipantId();
+  var SESSION_START = new Date().toISOString();
+  var jsPsych = initJsPsych({
+    on_finish: function () { showEndScreen(jsPsych, PARTICIPANT_ID, SESSION_START); }
+  });
+
+  //------------------------------------
+  // The world: which spaceship flies where, and the drifting treasure
+  //------------------------------------
+  // Spaceships 1 and 2 start from launch pad A, 3 and 4 from launch pad B.
+  // Spaceships 1 and 3 always fly to planet 1 (purple); 2 and 4 always fly to planet 2 (red).
+  var colours = jsPsych.randomization.shuffle(SHIP_COLOURS);
+  var T = CONFIG.practice_trials + CONFIG.n_trials;
+  var WORLD = {
+    ship_colour: {1: colours[0], 2: colours[1], 3: colours[2], 4: colours[3]},
+    ship_planet: {1: 1, 2: 2, 3: 1, 4: 2},
+    values: [],      // values[t] = [treasure from the purple alien, treasure from the red alien], before rounding
+    points: 0
+  };
+  (function () {
+    function gauss() { var u = 1 - Math.random(), v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+    // one alien starts between 0 and 4, the other between 5 and 9
+    var v = jsPsych.randomization.shuffle([Math.random() * 4, 5 + Math.random() * 4]);
+    for (var t = 0; t < T; t++) {
+      WORLD.values.push(v.slice());
+      v = v.map(function (x) {
+        x += CONFIG.drift_sd * gauss();
+        while (x < 0 || x > 9) { x = x < 0 ? -x : 18 - x; }   // reflect at 0 and 9
+        return x;
+      });
+    }
+  })();
+
+  function makeSpecs(n, practice, offset) {
+    var specs = [];
+    for (var i = 0; i < n; i++) {
+      var state = Math.random() < 0.5 ? 1 : 2;
+      var ships = jsPsych.randomization.shuffle(state === 1 ? [1, 2] : [3, 4]);
+      var stake = Math.random() < CONFIG.p_high_stakes ? CONFIG.stakes[1] : CONFIG.stakes[0];
+      specs.push({spec: {trial: i + 1, n_trials: n, practice: practice, start_state: state, stake: stake, ships: ships, t: offset + i}});
+    }
+    return specs;
+  }
+
+  //------------------------------------
+  // Instructions
+  //------------------------------------
+  function flightMap() {
+    var ship = function (id, x, y) { var c = WORLD.ship_colour[id]; return '<g transform="translate(' + x + ' ' + y + ') scale(.42)">' + rocket(c[0], c[1]) + '</g>'; };
+    var planet = function (p, x, y) {
+      var a = PLANET_ART[p];
+      return '<circle cx="' + x + '" cy="' + y + '" r="46" fill="' + a.alien[1] + '" stroke="#fff" stroke-width="3"/>' +
+             '<g transform="translate(' + x + ' ' + (y + 6) + ') scale(.32)">' + alien(a.alien[0], a.alien[1]) + '</g>';
+    };
+    var arrow = function (x1, y1, x2, y2) { return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="#cfd8f0" stroke-width="3" marker-end="url(#arr)"/>'; };
+    return '<svg viewBox="0 0 760 330"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#cfd8f0"/></marker></defs>' +
+      '<rect width="760" height="330" fill="#0b1636"/>' +
+      '<text x="120" y="34" class="msg" style="font-size:18px">Launch pad A</text><text x="640" y="34" class="msg" style="font-size:18px">Launch pad B</text>' +
+      ship(1, 70, 110) + ship(2, 170, 110) + ship(3, 590, 110) + ship(4, 690, 110) +
+      planet(1, 300, 262) + planet(2, 460, 262) +
+      arrow(80, 160, 250, 245) + arrow(178, 160, 410, 245) + arrow(590, 160, 350, 245) + arrow(690, 160, 512, 245) +
+      '<text x="300" y="326" class="msg" style="font-size:16px">purple planet</text><text x="460" y="326" class="msg" style="font-size:16px">red planet</text></svg>';
+  }
+
+  var minutes = Math.round((CONFIG.practice_trials * 6 + CONFIG.n_trials * 5.5) / 60);
+  var pages = [
+    '<div class="instr"><h2>Space treasure</h2>' +
+    '<svg viewBox="0 0 900 300">' + background('earth') + '<g transform="translate(330 160) scale(.8)">' + rocket(colours[0][0], colours[0][1]) + '</g>' +
+    '<g transform="translate(570 160) scale(.8)">' + rocket(colours[1][0], colours[1][1]) + '</g></svg>' +
+    '<p>You are a space explorer. On each trial you start on Earth and choose one of <b>two spaceships</b> ' +
+    'with the <b>left</b> (&larr;) or <b>right</b> (&rarr;) arrow key (or by clicking it).</p></div>',
+
+    '<div class="instr"><h2>Where the spaceships go</h2>' + flightMap() +
+    '<p>There are two launch pads, each with its own pair of spaceships. Each trial starts at one of them, at random. ' +
+    '<b>Every spaceship always flies to the same planet</b>: in each pair, one ship flies to the purple planet and the other to the red planet. ' +
+    'Take a moment to learn which is which. (Which side of the screen a ship is on doesn’t matter.)</p></div>',
+
+    '<div class="instr"><h2>The aliens</h2>' +
+    '<svg viewBox="0 0 900 300">' + background('purple') + '<g transform="translate(450 170) scale(.75)">' + alien(PLANET_ART[1].alien[0], PLANET_ART[1].alien[1]) + '</g>' +
+    [0, 1, 2, 3].map(function (i) { return '<g transform="translate(' + (381 + i * 46) + ' 52)">' + treasure() + '</g>'; }).join('') + '</svg>' +
+    '<p>On each planet, an alien works in a space mine. When you arrive, press the <b>space bar</b> (or click the alien) to collect its <b>space treasure</b>: from 0 to 9 pieces.</p>' +
+    '<p>Sometimes an alien is mining in a good spot and gives a lot of treasure, and sometimes in a bad spot. ' +
+    'How much each alien gives <b>changes slowly</b> over time, so keep track of which planet is paying well right now.</p></div>',
+
+    '<div class="instr"><h2>The stakes</h2>' +
+    '<svg viewBox="0 0 900 200"><rect width="900" height="200" fill="#0b1636"/><g transform="translate(330 100)">' + stakesBadge(1, 1.2) + '</g><g transform="translate(570 100)">' + stakesBadge(5, 1.2) + '</g></svg>' +
+    '<p>At the start of each trial, a badge shows the <b>stakes</b>. On <b>5×</b> trials, every piece of treasure is worth 5 points; ' +
+    'on <b>1×</b> trials, only 1 point. The stakes are random and don’t change where the ships go or how much treasure the aliens have.</p></div>',
+
+    '<div class="instr"><h2>Practice first</h2>' +
+    '<p>You’ll start with <b>' + CONFIG.practice_trials + ' practice trials</b> with no time limit. Points don’t count.</p>' +
+    '<p>After that, there are <b>' + CONFIG.n_trials + ' trials</b> (about ' + minutes + ' minutes in all), with a time limit: you have ' +
+    (CONFIG.choice_deadline_ms / 1000) + ' seconds to choose a spaceship and ' + (CONFIG.alien_deadline_ms / 1000) + ' seconds to press the space bar. ' +
+    'Earn as many points as you can.</p>' +
+    '<p>Your choices are not sent or saved anywhere. At the end you will see a short summary, and you can download your own data if you like.</p>' +
+    '<p>Click <b>Next</b> to switch to full screen and start the practice.</p></div>'
+  ];
+  var instructions = {type: jsPsychInstructions, pages: pages, show_clickable_nav: true, key_forward: 'ArrowRight', key_backward: 'ArrowLeft'};
+
+  var fullscreen_on = {type: jsPsychFullscreen, fullscreen_mode: true, delay_after: 300,
+                       message: '<p style="font-size:20px">The game will switch to full screen.</p>', button_label: 'Start'};
+  var fullscreen_off = {type: jsPsychFullscreen, fullscreen_mode: false};
+
+  var practice = {timeline: [{type: jsPsychSpaceshipTrial, spec: jsPsych.timelineVariable('spec')}],
+                  timeline_variables: makeSpecs(CONFIG.practice_trials, true, 0)};
+  var start_real = {
+    type: jsPsychInstructions, show_clickable_nav: true, key_forward: 'ArrowRight', allow_backward: false, button_label_next: 'Start',
+    pages: ['<div class="instr"><h2>Practice over</h2>' + flightMap() +
+            '<p>Here is the flight map again. Now the points count, and there are time limits. Good luck!</p></div>']
+  };
+  var main = {timeline: [{type: jsPsychSpaceshipTrial, spec: jsPsych.timelineVariable('spec')}],
+              timeline_variables: makeSpecs(CONFIG.n_trials, false, CONFIG.practice_trials)};
+
+  var timeline = [instructions, fullscreen_on];
+  if (CONFIG.practice_trials > 0) { timeline.push(practice, start_real); }
+  timeline.push(main, fullscreen_off);
+  jsPsych.run(timeline);
+  </script>
+</html>

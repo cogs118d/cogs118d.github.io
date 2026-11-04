@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crab traps</title>
+
+    <!-- COGS 118D (UC San Diego): a browser version of the dynamic foraging task in Rutledge et al. (2009),
+         "Dopaminergic drugs modulate learning rates and perseveration in Parkinson's patients in a dynamic foraging task". See README.md. -->
+
+    <script src="https://unpkg.com/jspsych@8.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <link href="https://unpkg.com/jspsych@8.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data-export.js"></script>
+    <script src="./js/plugin-crabs.js"></script>
+
+    <style>
+      html, body { background: #0a3558; color: #f1f1f1; }
+      .jspsych-display-element { font-family: "Helvetica Neue", Arial, sans-serif; }
+      .jspsych-content { max-width: 960px; width: 100%; }
+      .jspsych-btn { font-size: 18px; padding: 8px 20px; }
+      .instr { max-width: 720px; text-align: left; font-size: 19px; line-height: 1.5; margin: 0 auto; }
+      .instr h2 { text-align: center; }
+      .instr svg { width: 100%; max-width: 560px; display: block; margin: 8px auto; border-radius: 10px; }
+      .stage { display: flex; flex-direction: column; align-items: center; }
+      .hud { width: 100%; max-width: 900px; display: flex; justify-content: space-between; font-size: 17px; color: #d6e9f5; margin-bottom: 6px; }
+      #scene { width: 100%; max-width: 900px; border-radius: 12px; }
+      .trap { cursor: pointer; transition: transform .45s ease-out; }
+      .trap.raised { transform: translateY(-250px); }
+      .buoy { transition: opacity .3s; } .buoy.hidden { opacity: 0; }
+      .mesh { stroke: #8a6a52; stroke-width: 1.6; opacity: .8; }
+      .label { font-size: 34px; font-weight: bold; fill: #e8eef3; text-anchor: middle; }
+      .label.good { fill: #ffd166; }
+      .hint { color: #b9d3e4; font-size: 16px; margin-top: 8px; }
+      .endscreen { max-width: 820px; margin: 30px auto; text-align: left; font-size: 18px; line-height: 1.45; }
+      .plot { width: 100%; background: #08263f; border-radius: 10px; }
+      .plot text { fill: #c9d6e0; font-size: 13px; }
+      table.summary { border-collapse: collapse; margin: 8px 0 14px; font-size: 16px; }
+      table.summary td, table.summary th { border: 1px solid #3f6a8c; padding: 6px 10px; text-align: center; }
+      table.summary td:first-child { text-align: left; }
+      .note { color: #c3d4e0; font-size: 16px; }
+      .credit { color: #8fa9bd; font-size: 13px; margin-top: 30px; }
+    </style>
+  </head>
+  <body></body>
+  <script>
+
+  var PARTICIPANT_ID = makeParticipantId();
+  var SESSION_START = new Date().toISOString();
+  var jsPsych = initJsPsych({
+    on_finish: function () { showEndScreen(jsPsych, PARTICIPANT_ID, SESSION_START); }
+  });
+
+  //------------------------------------
+  // The reward schedule: blocks of 70-90 trials; the rich trap alternates sides at each block change
+  //------------------------------------
+  function randInt(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+  var WORLD = {probs: [], blocks: [], bait: [0, 0], rewards: []};
+  (function () {
+    var rich = Math.random() < 0.5 ? 0 : 1;   // 0 = red, 1 = green
+    var b = 1;
+    while (WORLD.probs.length < CONFIG.n_trials) {
+      var len = randInt(CONFIG.block_min, CONFIG.block_max);
+      var ratio = CONFIG.ratios[Math.floor(Math.random() * CONFIG.ratios.length)];
+      var p_rich = CONFIG.total_p * ratio / (ratio + 1), p_lean = CONFIG.total_p - p_rich;
+      var p = rich === 0 ? [p_rich, p_lean] : [p_lean, p_rich];
+      for (var i = 0; i < len && WORLD.probs.length < CONFIG.n_trials; i++) { WORLD.probs.push(p); WORLD.blocks.push(b); }
+      rich = 1 - rich; b += 1;
+    }
+  })();
+
+  //------------------------------------
+  // Instructions
+  //------------------------------------
+  var minutes = Math.round(CONFIG.n_trials * 2.1 / 60);
+  var instructions = {
+    type: jsPsychInstructions,
+    show_clickable_nav: true,
+    key_forward: 'ArrowRight', key_backward: 'ArrowLeft',
+    pages: [
+      '<div class="instr"><h2>Crab traps</h2>' + crabScene() +
+      '<p>You are a crab fisher with two traps in the water, one marked by a <b style="color:#ff6b75">red buoy</b> ' +
+      'and one by a <b style="color:#63d47f">green buoy</b>. On each trial, pull up one trap: ' +
+      '<b>left arrow</b> (&larr;) for red, <b>right arrow</b> (&rarr;) for green, or click a trap.</p>' +
+      '<p>If a crab is in the trap, you catch it. Each crab is worth ' + CONFIG.cents_per_crab + ' cents (not real money!).</p></div>',
+
+      '<div class="instr"><h2>How crabs get into traps</h2>' +
+      '<p>Crabs wander into each trap at random, and one trap gets crabs more often than the other. ' +
+      'Once a crab is in a trap, <b>it stays there until you pull that trap up</b>. ' +
+      'So a trap you haven’t checked for a while is more likely to have a crab waiting in it.</p>' +
+      '<p>Every so often, without warning, the crabs move: the trap that was better becomes the worse one.</p>' +
+      '<p>At the top of the screen you will see how many crabs you caught in the last ' + CONFIG.window + ' trials.</p></div>',
+
+      '<div class="instr"><h2>Ready?</h2>' +
+      '<p>There are <b>' + CONFIG.n_trials + ' trials</b>, about ' + minutes + ' minutes. Choices have no time limit, but the trials go quickly. Try to catch as many crabs as you can.</p>' +
+      '<p>Your choices are not sent or saved anywhere. At the end you will see a short summary, and you can download your own data if you like.</p>' +
+      '<p>Click <b>Next</b> to switch to full screen and start.</p></div>'
+    ]
+  };
+  var fullscreen_on = {type: jsPsychFullscreen, fullscreen_mode: true, delay_after: 300,
+                       message: '<p style="font-size:20px">The game will switch to full screen.</p>', button_label: 'Start'};
+  var fullscreen_off = {type: jsPsychFullscreen, fullscreen_mode: false};
+
+  var specs = [];
+  for (var t = 1; t <= CONFIG.n_trials; t++) { specs.push({spec: {trial: t, n_trials: CONFIG.n_trials}}); }
+  var trials = {timeline: [{type: jsPsychCrabTrial, spec: jsPsych.timelineVariable('spec')}], timeline_variables: specs};
+
+  jsPsych.run([instructions, fullscreen_on, trials, fullscreen_off]);
+  </script>
+</html>
