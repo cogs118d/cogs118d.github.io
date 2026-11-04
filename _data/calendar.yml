@@ -176,6 +176,9 @@
     lec: Lec 15
     title: '<a href="https://drive.google.com/file/d/1aKc1QYJOSqR5yz9FyZ5B9SQ8vslayLum/view?usp=drive_link" target="_blank" rel="noopener">Model comparison, recovery, and validation, examples &#x2197;</a>'
     due: [Quiz 4, Homework 4]
+    released:
+      - name: Homework 5
+        url: https://docs.google.com/document/d/1t4wBhX7zIrdk_mtyrjMI24jy1wmkFU8WApvACI2B3jE/edit?usp=sharing
   wed:
     date: Nov 4
     lec: Lec 16
