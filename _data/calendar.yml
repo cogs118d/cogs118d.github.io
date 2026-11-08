@@ -188,6 +188,11 @@
     date: Nov 6
     lec: Lec 17
     title: '<a href="https://drive.google.com/file/d/1UEJB2nNFWJOxYg2450NYdVRBEsClffSf/view?usp=drive_link" target="_blank" rel="noopener">Model-based and model-free RL &#x2197;</a>'
+    released:
+      - name: Exam 2 Study Sheet + Practice Exam
+        url: https://docs.google.com/document/d/1IdLCyxvKcys66wFrZaTlBhtFtyjoGOSMPbigVWMi7oU/edit?usp=sharing
+      - name: Weeks 4-6 Webclickers + Practice Problems
+        url: https://drive.google.com/file/d/1h501hDgQWLoLALLjiKIEwGXqAofqr8Ud/view?usp=drive_link
     note: Last day to drop with a "W"
 
 - week: 7
