@@ -199,19 +199,19 @@
   mon:
     date: Nov 9
     lec: Lec 18
-    title: Final project topics and options
+    title: '<a href="https://drive.google.com/file/d/18Xr0DMPK6drfzJALvj19Za95HgIRy_YH/view?usp=drive_link" target="_blank" rel="noopener">Final project topics and options &#x2197;</a>'
     due: [Quiz 5, Homework 5, Project groups survey]
     due: [Quiz 5, Homework 5]
   wed:
     date: Nov 11
     event: NO CLASS
     note: Veterans Day holiday
-    due: [Project groups survey]
     section: No section
   fri:
     date: Nov 13
     event: EXAM 2
     title: _Project groups assigned_
+    due: [Project groups survey]
 
 - week: 8
   mon:
