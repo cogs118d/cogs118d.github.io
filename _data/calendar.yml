@@ -213,8 +213,10 @@
   fri:
     date: Nov 13
     event: EXAM 2
-    title: _Project groups assigned_
-    due: [Project groups survey]
+    due:
+      - Project groups survey
+      - name: "Due (Sat): Final project survey"
+        url: https://forms.gle/e1efx6D1qRjEpTce8
 
 - week: 8
   mon:
