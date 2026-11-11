@@ -154,7 +154,7 @@
     lec: Lec 12
     title: '<a href="https://drive.google.com/file/d/1uZVwvM8fq0lNkZ4LPEVQ5CLV3rYA50N5/view?usp=drive_link" target="_blank" rel="noopener"><b>Reinforcement learning</b> as a cognitive model of decision making &#x2197;</a>'
     due:
-      - name: Mini-Project 1 (slides & video)
+      - name: Mini-Project 1 (video)
         url: https://canvas.ucsd.edu/courses/78359/assignments/1200120
     released:
       - name: Homework 4
@@ -222,7 +222,9 @@
     lec: Lec 18
     title: "Guest lecture: Ionatan Kuperwajs"
     guest: Postdoctoral Fellow, Princeton CoCoSci Lab
-    due: [Mini-Project 2 (slides & video)]
+    due:
+      - name: Mini-Project 2 (video)
+        url: https://canvas.ucsd.edu/courses/78359/modules
   wed:
     date: Nov 18
     lec: Lec 19
