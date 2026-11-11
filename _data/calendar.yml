@@ -202,6 +202,9 @@
     title: '<a href="https://drive.google.com/file/d/18Xr0DMPK6drfzJALvj19Za95HgIRy_YH/view?usp=drive_link" target="_blank" rel="noopener">Final project topics and options &#x2197;</a>'
     due: [Quiz 5, Homework 5, Project groups survey]
     due: [Quiz 5, Homework 5]
+    released:
+      - name: Mini-Project 2 Guidelines
+        url: https://docs.google.com/document/d/1sdw6OOCn3_wH639rbqXazpp86cXHtufdNqbvegsX9eI/edit?tab=t.o72007odztz
   wed:
     date: Nov 11
     event: NO CLASS
