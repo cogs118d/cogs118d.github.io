@@ -220,7 +220,7 @@
 - week: 8
   mon:
     date: Nov 16
-    lec: Lec 18
+    lec: Lec 19
     title: "Guest lecture: Ionatan Kuperwajs"
     guest: Postdoctoral Fellow, Princeton CoCoSci Lab
     due:
@@ -228,23 +228,23 @@
         url: https://canvas.ucsd.edu/courses/78359/modules
   wed:
     date: Nov 18
-    lec: Lec 19
+    lec: Lec 20
     title: "**Bayesian models** of action"
     section: Section
   fri:
     date: Nov 20
-    lec: Lec 20
+    lec: Lec 21
     title: Bayesian models of action (cont'd)
 
 - week: 9
   mon:
     date: Nov 23
-    lec: Lec 21
+    lec: Lec 22
     title: "**Hidden Markov Models (HMMs)** as a model of unobserved cognitive states"
     due: [Quiz 6, Homework 6]
   wed:
     date: Nov 25
-    lec: Lec 22
+    lec: Lec 23
     title: HMMs (cont'd)
     section: Section
   fri:
@@ -257,7 +257,7 @@
   topic: ''
   mon:
     date: Nov 30
-    lec: Lec 23
+    lec: Lec 24
     title: HMMs (cont'd) — _virtual lecture_
     due: [Quiz 7, Homework 7]
   wed:
