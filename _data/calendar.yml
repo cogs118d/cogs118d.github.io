@@ -225,7 +225,7 @@
     guest: Postdoctoral Fellow, Princeton CoCoSci Lab
     due:
       - name: Mini-Project 2 (video)
-        url: https://canvas.ucsd.edu/courses/78359/modules
+        url: https://canvas.ucsd.edu/courses/78359/modules/items/3521084
   wed:
     date: Nov 18
     lec: Lec 20
@@ -241,7 +241,11 @@
     date: Nov 23
     lec: Lec 22
     title: "**Hidden Markov Models (HMMs)** as a model of unobserved cognitive states"
-    due: [Quiz 6, Homework 6]
+    due:
+      - name: Quiz 6
+      - name: Homework 6
+      - name: Mini-Project 2 peer evaluations
+        url: https://canvas.ucsd.edu/courses/78359/modules/items/3521084
   wed:
     date: Nov 25
     lec: Lec 23
