@@ -229,12 +229,15 @@
   wed:
     date: Nov 18
     lec: Lec 20
-    title: '<a href="https://drive.google.com/file/d/1SRemx7N90dgEG3XqnSsB_XgJyt1gTc1O/view?usp=drive_link" target="_blank" rel="noopener"><b>Bayesian models</b> of action &#x2197;</a>'
+    title: '<a href="https://drive.google.com/file/d/1SRemx7N90dgEG3XqnSsB_XgJyt1gTc1O/view?usp=drive_link" target="_blank" rel="noopener"><b>Bayesian Models of Perception</b> &#x2197;</a>'
     section: Section
+    released:
+      - name: Homework 6
+        url: https://docs.google.com/document/d/1N-lIyCaJaxgdXaMNNrkRf2X1TphKGqtjZN-rzxhxBc8/edit?usp=sharing
   fri:
     date: Nov 20
     lec: Lec 21
-    title: Bayesian models of action (cont'd)
+    title: Bayesian Models of Cognition
 
 - week: 9
   mon:
