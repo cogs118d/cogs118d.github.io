@@ -243,7 +243,7 @@
   mon:
     date: Nov 23
     lec: Lec 22
-    title: "**Hidden Markov Models (HMMs)** as a model of unobserved cognitive states"
+    title: Hidden states and the forward algorithm
     due:
       - name: Quiz 6
       - name: Homework 6
@@ -252,7 +252,7 @@
   wed:
     date: Nov 25
     lec: Lec 23
-    title: HMMs (cont'd)
+    title: HMMs as a data-analysis tool
     section: Section
   fri:
     date: Nov 27
@@ -265,7 +265,7 @@
   mon:
     date: Nov 30
     lec: Lec 24
-    title: HMMs (cont'd) — _virtual lecture_
+    title: HMMs as models of the mind — _virtual lecture_
     due: [Quiz 7, Homework 7]
   wed:
     date: Dec 2
