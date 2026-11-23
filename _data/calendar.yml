@@ -249,6 +249,9 @@
       - name: Homework 6
       - name: Mini-Project 2 peer evaluations
         url: https://canvas.ucsd.edu/courses/78359/modules/items/3521084
+    released:
+      - name: Homework 7
+        url: https://docs.google.com/document/d/1uhwg5eqbuUCSPPVahEyMtwd2I5Cv6KdDmijfbw2CsBo/edit?usp=sharing
   wed:
     date: Nov 25
     lec: Lec 23
